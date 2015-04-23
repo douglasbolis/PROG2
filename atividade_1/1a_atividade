@@ -1,0 +1,19 @@
+Exercícios:
+
+(1)
+
+Construa a função separaPal(<text>) que recebe como entrada um texto contendo um documento qualquer.
+A Função deve retornar uma lista contendo as palavras presente no texto. Uma palavra é uma sequencia
+de caracteres entre caracteres chamados de separadores. São considerados separadores os seguintes
+caracteres:
+ - '.', '!', '?', ':', ';', ',', ' '.
+
+ OBS.: Não utilize funções de strings
+
+(2)
+
+Construa a função extraiSentenca(<texto>) que recebe como entrada um texto qualquer e retorna uma
+lista com as sentenças do texto. Uma sentença é um conjunto de palavras finaliza por:
+ - '.', '!', '?', ':'.
+
+ OBS.: Não utilize funções de strings
