@@ -1,0 +1,12 @@
+Exercicio
+
+(1)
+Construa uma aplicação python para:
+    (a) Fazer uma cópia de um arquivo.
+        Ex.: python3 copia <arquivoOriginal> <arquivoCopia>
+
+    (b) Remover os acentos de um texto.
+        Ex.: python3 semAcentos <arquivoOriginal> <arquivoSemAcentos>
+
+    (c) Concatenar n arquivos.
+        Ex.: python3 concatena <arquivo1> <arquivo2> ... <arquivoN> <arquivoConcatenado>
