@@ -19,11 +19,11 @@ def concat(lstArq):
 #fim concat
 
 def main():
-    # if (len(sys.argv) >= 3):
-        #concat(sys.argv[1:])
-    concat(['concat_1.txt', 'concat_2.txt', 'concat_3.txt', 'concat_destino.txt'])
-    # else:
-    #     print("\nQuantidade de parametros incorreto\nUse: python3 concatena_arquivos.py <arquivo 1> ... <arquivo N>\n\n")
+    if (len(sys.argv) >= 3):
+        concat(sys.argv[1:])
+    # concat(['concat_1.txt', 'concat_2.txt', 'concat_3.txt', 'concat_destino.txt'])
+    else:
+        print("\nQuantidade de parametros incorreto\nUse: python3 concatena_arquivos.py <arquivo 1> ... <arquivo N>\n\n")
     #fim else
 
     return 0
