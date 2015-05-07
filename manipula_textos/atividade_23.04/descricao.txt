@@ -1,0 +1,15 @@
+(1)
+Construa uma aplicação '.py' fazendo uso da libpybsi. A aplicação deve receber um documento texto como entrada e retornar
+a tabela de frequência das entidades nomeadas compostas dos seguintes padrões:
+
+    M       (ex.: Curitiba)
+    MM      (ex.: Casas Bahia)
+    MpM     (ex.: Banco do Brasil)
+    MMpMM   (ex.: Companhia Vale do Rio Doce)
+    N/N/N   (ex.: 23/04/2015)
+    MMpM    (ex.: Rede Globo de Televisão)
+    MMM     (ex.: Polícia Rodoviária Federal, TSU, TSE etc...)
+
+
+OBS.: Altere o codificador para incluir o padrão 'a' e 'A', para artigo minúsculo e Maiúsculo, respectivamente.
+Incluir o padrão AN (ex.: O globo).
