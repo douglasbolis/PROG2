@@ -1,5 +1,6 @@
 __author__ = 'douglas'
 
+
 """     FUNÇÕES DE MANIPULAÇÃO DE TEXTOS    """
 
 #   separaPalavras(...) pega um texto e retorna suas palavras em uma lista
@@ -53,6 +54,7 @@ def anterior(pTexto, ppos, strSep):
         return None
     else:
         return corrente(pTexto, i, strSep)
+        #fim else
 #fim funcao
 
 #   proxima(...) pega um texto e retorna a próxima palavra que esta na posição passada pelo parâmentro
@@ -72,3 +74,26 @@ def proxima(pTexto, ppos, strSep):
     else:
         return corrente(pTexto, i, strSep)
 #fim funcao
+
+#   tabFreg(...) transforma o texto em uma lista e chama geraTabFreg(...)
+def tabFreg(pTexto, srtSep):
+    lst = separaPalavras(pTexto, srtSep)
+    geraTabFreg(lst)
+#fim funcao
+
+#   geratabFreg(...) imprime a tabela de frequencia da lista passada por parâmetro
+def geraTabFreg(lstText):
+    dic = {}
+
+    for elem in lstText:
+        if elem in dic:
+            dic[elem] += 1
+        else:
+            dic[elem] = 1
+            #fim else
+    #fim for
+
+    for elem in dic:
+        print("%s %d" %(elem, dic[elem]))
+        #fim for
+        #fim funcao
