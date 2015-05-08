@@ -100,7 +100,7 @@ def geraTabFreg(lstText):
 
 #   tokenizador(...) retorna uma lista contendo as 'palavras e pontuações' contidas no texto e uma lista de suas posições posições
 def tokenizador(pTexto):
-	strSep = [' ', '.', ',', ';', ':', '!', '?', '(', ')', '[', ']', '{', '}', '\\', '|', '/', '\n', '\t', '"'];
+	strSep = [' ', '.', ',', ';', ':', '!', '?', '(', ')', '[', ']', '{', '}', '\\', '|', '/', '\n', '\t', '"']
 	lstTokens, lstPosicoes = [], []
 	strBuffer, pos = '', 0
 	
