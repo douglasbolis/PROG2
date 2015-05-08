@@ -14,7 +14,7 @@ def separaPalavras(pTexto, strSep):
         elif auxSep:
             palSep.append(auxSep)
             auxSep = ''
-            #fim else
+        #fim else
     #fim for
 
     return palSep
@@ -35,7 +35,7 @@ def corrente(pTexto, ppos, strSep):
             j += 1
         #fim while
         return pTexto[i+1:j]
-        #fim else
+    #fim else
 #fim funcao
 
 #   anterior(...) pega um texto e retorna a palavra anterior que esta na posição passada pelo parâmentro
@@ -45,7 +45,7 @@ def anterior(pTexto, ppos, strSep):
     if (pTexto[i] not in strSep):
         while (i >= 0) and (pTexto[i] not in strSep):
             i -= 1
-            #fim while
+        #fim while
     while (i >= 0) and (pTexto[i] in strSep):
         i -= 1
     #fim while
@@ -54,7 +54,7 @@ def anterior(pTexto, ppos, strSep):
         return None
     else:
         return corrente(pTexto, i, strSep)
-        #fim else
+    #fim else
 #fim funcao
 
 #   proxima(...) pega um texto e retorna a próxima palavra que esta na posição passada pelo parâmentro
@@ -90,10 +90,42 @@ def geraTabFreg(lstText):
             dic[elem] += 1
         else:
             dic[elem] = 1
-            #fim else
+        #fim else
     #fim for
 
     for elem in dic:
         print("%s %d" %(elem, dic[elem]))
-        #fim for
-        #fim funcao
+    #fim for
+#fim funcao
+
+#   tokenizador(...) retorna uma lista contendo as 'palavras e pontuações' contidas no texto e uma lista de suas posições posições
+def tokenizador(pTexto):
+	strSep = [' ', '.', ',', ';', ':', '!', '?', '(', ')', '[', ']', '{', '}', '\\', '|', '/', '\n', '\t', '"']
+	lstTokens, lstPosicoes = [], []
+	strBuffer, pos = '', 0
+	
+	while pos < len(pTexto):
+		if (pTexto[pos] not in strSep):
+			strBuffer += pTexto[pos]
+		else:
+			if (strBuffer != ''):
+				lstTokens.append(strBuffer)
+				lstPosicoes.append(pos-len(strBuffer))
+				strBuffer = ''
+			#fim if
+			
+			if (pTexto[pos] not in [' ', '\t']):
+				lstTokens.append(pTexto[pos])
+				lstPosicoes.append(pos)
+			#fim if
+		#fim else
+		pos += 1	
+	#fim while
+	
+	if strBuffer != '':
+		lstTokens.append(strBuffer)
+		lstPosicoes.append(pos-len(strBuffer))
+	#fim if	
+	
+	return lstTokens, lstPosicoes
+#fim funcao
