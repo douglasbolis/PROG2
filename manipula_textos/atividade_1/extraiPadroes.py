@@ -2,47 +2,52 @@ __author__ = "Douglas"
 
 import libplnbsi
 
-def extraiPadroes(pTexto):
-    lstPadroes = ['M', 'MM', 'MpM', 'MMpMM', 'N/N/N', 'MMpM', 'MMM']
-    strSep = [' ', '.', ',', ';', ':', '!', '?', '(', ')', '[', ']', '{', '}', '\\', '|', '/', '\n', '\t', '"']
-    lstTokens, lstPosicoes = [], []
-    strPadroes, pos = '', 0
+def sortTamLst(lst):
+    for i in range(len(lst)-1):
+        for i in range(len(lst)-1):
+            if (len(lst[i]) < len(lst[i+1])):
+                aux = lst[i]
+                lst[i] = lst[i+1]
+                lst[i+1] = aux
+            #fim if
+        #fim for
+    #fim for
+    return lst
+#fim funcao
 
+def extraiPadroes(pTexto, lstPadroes):
+    lstPadroes = sortTamLst(lstPadroes)
     lstTokens, lstPos = libplnbsi.tokenizador(pTexto)
+    strConfic = libplnbsi.codifica(lstTokens)
+    lstPadTexto = []
 
-    while pos < len(pTexto):
-        if (pTexto[pos] not in strSep):
-            strBuffer += pTexto[pos]
-        else:
-            if (strBuffer != ''):
-                lstTokens.append(strBuffer)
-                lstPosicoes.append(pos-len(strBuffer))
-                strBuffer = ''
+    print(strConfic)
+
+    for pd in range(len(lstPadroes)):
+        pos = strConfic.find(lstPadroes[pd])
+        while(pos != -1):
+            strPal = ''
+            strConfic = strConfic.replace(lstPadroes[pd], "*" * len(lstPadroes[pd]), 1)
+            for el in range(len(lstPadroes[pd])):
+                strPal += lstTokens[pos + el] + " "
+            #fim for
+            if (strPal):
+                lstPadTexto.append(strPal)
             #fim if
-
-            if (pTexto[pos] not in [' ', '\t']):
-                lstTokens.append(pTexto[pos])
-                lstPosicoes.append(pos)
-            #fim if
-        #fim else
-        pos += 1
-    #fim while
-
-    if strBuffer != '':
-        lstTokens.append(strBuffer)
-        lstPosicoes.append(pos-len(strBuffer))
-    #fim if
-
-
-    print(lstTokens)
-    print(lstPos)
+            pos = strConfic.find(lstPadroes[pd])
+        #fim while
+    #fim for
+    print(strConfic)
+    return lstPadTexto
 #fim funcao
 
 def main():
-    texto = "Semana passada (22/12/2014) eu toquei no assunto do módulo Progress, destinado a levar suprimentos para a Estação Espacial Internacional, ISS em inglês, que falhou assim que foi colocada em órbita. Mas relembrando os fatos, foi assim."
+    padroes = ['MMpMM', 'MMpM', 'MpM', 'MMM', 'MM', 'M', 'N/N/N']
+    texto = "Semana teste Banco do Brasil passada (22/12/2014) eu toq Hoje uei Banco do Brasil no Companhia Vale do Rio Doce assunto do módulo Progress, destinado a levar suprimentos para a Estação Espacial Internacional, ISS em inglês, que falhou assim que foi Republica Federativa do Brasil colocada em órbita. Mas relembrando os fatos, foi assim."
     lstTokens = ['Semana', 'passada', '(', '22', '/', '12', '/', '2014', ')', 'eu', 'toquei', 'no', 'assunto', 'do', 'módulo', 'Progress', ',', 'destinado', 'a', 'levar', 'suprimentos', 'para', 'a', 'Estação', 'Espacial', 'Internacional', ',', 'ISS', 'em', 'inglês', ',', 'que', 'falhou', 'assim', 'que', 'foi', 'colocada', 'em', 'órbita', '.', 'Mas', 'relembrando', 'os', 'fatos', ',', 'foi', 'assim', '.']
 
-    extraiPadroes(texto)
+    libplnbsi.geraTabFreq(extraiPadroes(texto, padroes))
+    # libplnbsi.geraTabFreq(lstTokens)
 
     return 0
 #fim main

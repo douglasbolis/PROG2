@@ -75,14 +75,14 @@ def proxima(pTexto, ppos, strSep):
         return corrente(pTexto, i, strSep)
 #fim funcao
 
-#   tabFreg(...) transforma o texto em uma lista e chama geraTabFreg(...)
-def tabFreg(pTexto, srtSep):
+#   tabFreq(...) transforma o texto em uma lista e chama geraTabFreq(...)
+def tabFreq(pTexto, srtSep):
     lst = separaPalavras(pTexto, srtSep)
-    geraTabFreg(lst)
+    geraTabFreq(lst)
 #fim funcao
 
-#   geratabFreg(...) imprime a tabela de frequencia da lista passada por parâmetro
-def geraTabFreg(lstText):
+#   geratabFreq(...) imprime a tabela de frequencia da lista passada por parâmetro
+def geraTabFreq(lstText):
     dic = {}
 
     for elem in lstText:
@@ -128,4 +128,76 @@ def tokenizador(pTexto):
 	#fim if	
 	
 	return lstTokens, lstPosicoes
+#fim funcao
+
+#   codifica(...) retorna uma string codificada em alguns codigos como: MmpcaN
+def codifica(pLst):
+    lstArtigos = ['a', 'as', 'o', 'os', 'um', 'uma', 'umas', 'uns']
+    lstConj = ['e', 'nem', 'mas', 'também', 'como', 'bem', 'como', 'mas', 'porém', 'todavia', 'contudo', 'entretanto',  'logo', 'portanto', 'isso', 'assim', 'seguinte', 'que', 'porque', 'pois']
+    lstPrepos = ['a', 'ante', 'até', 'após', 'do', 'de', 'desde', 'em', 'entre', 'com', 'contra', 'para', 'pro', 'perante', 'sem', 'sob', 'sobre', 'como', 'conforme', 'segundo', 'durante', 'fora', 'exceto']
+    strCodif = ''
+
+    for lstAux in pLst:
+        if (lstAux.isalpha()):
+            if (lstAux in lstArtigos):
+                strCodif += 'a'
+            elif (lstAux in lstConj):
+                strCodif += 'c'
+            elif (lstAux in lstPrepos):
+                strCodif += 'p'
+            elif (lstAux[0].isupper()):
+                strCodif += 'M'
+            elif (lstAux[0].islower()):
+                strCodif += 'm'
+        elif (lstAux.isdigit()):
+            strCodif += 'N'
+        else:
+            strCodif += lstAux
+        #fim else
+    #fim for
+
+    return strCodif
+#fim funcao
+
+
+# sortTamLst(...) ordena a lista passada por parâmetro em decrescente de tamanho
+def sortTamLst(lst):
+    for i in range(len(lst)-1):
+        for i in range(len(lst)-1):
+            if (len(lst[i]) < len(lst[i+1])):
+                aux = lst[i]
+                lst[i] = lst[i+1]
+                lst[i+1] = aux
+            #fim if
+        #fim for
+    #fim for
+    return lst
+#fim funcao
+
+
+# extraiPadroes(...) extrai certos padroes do texto e retorna uma lista com esses padroes extraidos
+def extraiPadroes(pTexto, lstPadroes):
+    lstPadroes = sortTamLst(lstPadroes)
+    lstTokens, lstPos = tokenizador(pTexto)
+    strConfic = codifica(lstTokens)
+    lstPadTexto = []
+
+    print(strConfic)
+
+    for pd in range(len(lstPadroes)):
+        pos = strConfic.find(lstPadroes[pd])
+        while(pos != -1):
+            strPal = ''
+            strConfic = strConfic.replace(lstPadroes[pd], "*" * len(lstPadroes[pd]), 1)
+            for el in range(len(lstPadroes[pd])):
+                strPal += lstTokens[pos + el] + " "
+            #fim for
+            if (strPal):
+                lstPadTexto.append(strPal)
+            #fim if
+            pos = strConfic.find(lstPadroes[pd])
+        #fim while
+    #fim for
+    print(strConfic)
+    return lstPadTexto
 #fim funcao

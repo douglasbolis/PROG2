@@ -2,7 +2,7 @@ __author__ = "Douglas"
 
 def codifica(pLst):
 	lstArtigos = ['a', 'as', 'o', 'os', 'um', 'uma', 'umas', 'uns']
-	lstConj = ['e', 'nem', 'mas também', 'como também', 'bem', 'como', 'mas', 'porém', 'todavia', 'contudo', 'entretanto', 'no entanto', 'logo', 'portanto', 'por isso', 'assim', 'por seguinte', 'que', 'porque', 'porquanto', 'pois']
+	lstConj = ['e', 'nem', 'também', 'bem', 'como', 'mas', 'porém', 'todavia', 'contudo', 'entretanto', 'no entanto', 'logo', 'portanto', 'por isso', 'assim', 'por seguinte', 'que', 'porque', 'porquanto', 'pois']
 	lstPrepos = ['a', 'ante', 'até', 'após', 'de', 'desde', 'em', 'entre', 'com', 'contra', 'para', 'pro', 'perante', 'sem', 'sob', 'sobre', 'como', 'conforme', 'segundo', 'durante', 'fora', 'exceto']
 	strCodif = ''	
 	
