@@ -94,7 +94,7 @@ def geraTabFreq(lstText):
     #fim for
 
     for elem in dic:
-        print("%50s %d" %(elem, dic[elem]))
+        print("%s %d" %(elem, dic[elem]))
     #fim for
 #fim funcao
 
