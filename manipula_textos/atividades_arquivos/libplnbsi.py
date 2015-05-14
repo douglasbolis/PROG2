@@ -3,6 +3,8 @@ __author__ = 'douglas'
 
 """     FUNÇÕES DE MANIPULAÇÃO DE TEXTOS    """
 
+from operator import itemgetter
+
 #   separaPalavras(...) pega um texto e retorna suas palavras em uma lista
 def separaPalavras(pTexto, strSep):
     auxSep = ''
@@ -93,41 +95,98 @@ def geraTabFreq(lstText):
         #fim else
     #fim for
 
+    dic = sorted(dic.items(), key=itemgetter(1), reverse=True)
+
     for elem in dic:
-        print("%50s %d" %(elem, dic[elem]))
+        print("%50s %d" %(elem[0], elem[1]))
     #fim for
+#fim funcao
+
+#   insereEspaco(...) retorna o texto passado como parâmetro acrescido de espaços antes e depois de seus separadores
+def insereEspaco(pTexto):
+    textReturn = ''
+    el = 0
+
+    while el < len(pTexto):
+        if pTexto[el].isdigit() and ((el+1) < len(pTexto)) and (pTexto[el+1]).isalpha():
+            textReturn += pTexto[el] + " "
+        elif pTexto[el].isalnum():
+            textReturn += pTexto[el]
+        else:
+            textReturn += " " + pTexto[el] + " "
+        #fim else
+        el += 1
+    #fim for
+    return textReturn
+#fim funcao
+
+#   insereEspaco(...) retorna o texto passado como parâmetro acrescido de espaços antes e depois de seus separadores
+def verificaSeparadores(pTexto):
+    arqSep = open('arqDestMan/separadores.txt', 'wt')
+    strSep = ' \n\t\n'
+
+    for el in pTexto:
+        if not el.isalnum() and el not in strSep:
+            strSep += el + '\n'
+        #fim if
+    #fim for
+    arqSep.write(strSep)
+    arqSep.close()
+#fim funcao
+
+def atualizaSeparadores(pTexto):
+    lstSep = []
+
+    verificaSeparadores(pTexto)
+
+    arqSep = open('arqDestMan/separadores.txt', 'rt')
+    linha = arqSep.readline()
+
+    while linha != '':
+        if linha not in lstSep:
+            lstSep.append(linha[:-1])
+        #fim if
+        linha = arqSep.readline()
+    #fim while
+    arqSep.close()
+
+    return lstSep
 #fim funcao
 
 #   tokenizador(...) retorna uma lista contendo as 'palavras e pontuações' contidas no texto e uma lista de suas posições posições
 def tokenizador(pTexto):
-	strSep = [' ', '.', ',', ';', ':', '!', '?', '(', ')', '[', ']', '{', '}', '\\', '|', '/', '\n', '\t', '"']
-	lstTokens, lstPosicoes = [], []
-	strBuffer, pos = '', 0
-	
-	while pos < len(pTexto):
-		if (pTexto[pos] not in strSep):
-			strBuffer += pTexto[pos]
-		else:
-			if (strBuffer != ''):
-				lstTokens.append(strBuffer)
-				lstPosicoes.append(pos-len(strBuffer))
-				strBuffer = ''
-			#fim if
-			
-			if (pTexto[pos] not in [' ', '\t']):
-				lstTokens.append(pTexto[pos])
-				lstPosicoes.append(pos)
-			#fim if
-		#fim else
-		pos += 1	
-	#fim while
-	
-	if strBuffer != '':
-		lstTokens.append(strBuffer)
-		lstPosicoes.append(pos-len(strBuffer))
-	#fim if	
-	
-	return lstTokens, lstPosicoes
+    lstSep, lstTokens, lstPosicoes = [], [], []
+    strBuffer, pos = '', 0
+
+    lstSep = atualizaSeparadores(pTexto)
+    # lstSep = [' ', '\t', '.', ',', '-', ':', ';', ')', '§', '(', '%', '°', '´']
+    print(lstSep)
+    print(len(lstSep))
+
+    while pos < len(pTexto):
+        if (pTexto[pos] not in lstSep):
+            strBuffer += pTexto[pos]
+        else:
+            if (strBuffer != ''):
+                lstTokens.append(strBuffer)
+                lstPosicoes.append(pos-len(strBuffer))
+                strBuffer = ''
+            #fim if
+
+            if (pTexto[pos] not in [' ', '\t']):
+                lstTokens.append(pTexto[pos])
+                lstPosicoes.append(pos)
+            #fim if
+        #fim else
+        pos += 1
+    #fim while
+
+    if strBuffer != '':
+        lstTokens.append(strBuffer)
+        lstPosicoes.append(pos-len(strBuffer))
+    #fim if
+
+    return lstTokens, lstPosicoes
 #fim funcao
 
 #   codifica(...) retorna uma string codificada em alguns codigos como: MmpcaN
@@ -138,7 +197,7 @@ def codifica(pLst):
     strCodif = ''
 
     for lstAux in pLst:
-        if (lstAux.isalpha()):
+        if (lstAux[0].isalpha()):
             if (lstAux in lstArtigos):
                 strCodif += 'a'
             elif (lstAux in lstConj):
@@ -151,6 +210,8 @@ def codifica(pLst):
                 strCodif += 'm'
         elif (lstAux.isdigit()):
             strCodif += 'N'
+        elif (repr(lstAux)):
+            strCodif += lstAux
         else:
             strCodif += lstAux
         #fim else
@@ -179,25 +240,22 @@ def sortTamLst(lst):
 def extraiPadroes(pTexto, lstPadroes):
     lstPadroes = sortTamLst(lstPadroes)
     lstTokens, lstPos = tokenizador(pTexto)
-    strConfic = codifica(lstTokens)
+    strCodif = codifica(lstTokens)
     lstPadTexto = []
 
-    print(strConfic)
-
     for pd in range(len(lstPadroes)):
-        pos = strConfic.find(lstPadroes[pd])
+        pos = strCodif.find(lstPadroes[pd])
         while(pos != -1):
             strPal = ''
-            strConfic = strConfic.replace(lstPadroes[pd], "*" * len(lstPadroes[pd]), 1)
+            strCodif = strCodif.replace(lstPadroes[pd], "*" * len(lstPadroes[pd]), 1)
             for el in range(len(lstPadroes[pd])):
                 strPal += lstTokens[pos + el] + " "
             #fim for
             if (strPal):
                 lstPadTexto.append(strPal)
             #fim if
-            pos = strConfic.find(lstPadroes[pd])
+            pos = strCodif.find(lstPadroes[pd])
         #fim while
     #fim for
-    print(strConfic)
     return lstPadTexto
 #fim funcao

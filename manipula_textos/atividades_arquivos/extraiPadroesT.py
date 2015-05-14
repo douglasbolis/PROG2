@@ -22,6 +22,7 @@ def extraiPadroes(pTexto, lstPadroes):
     lstPadTexto = []
 
     print(strConfic)
+    print(lstTokens)
 
     for pd in range(len(lstPadroes)):
         pos = strConfic.find(lstPadroes[pd])
@@ -43,10 +44,11 @@ def extraiPadroes(pTexto, lstPadroes):
 
 def main():
     padroes = ['MMpMM', 'MMpM', 'MpM', 'MMM', 'MM', 'M', 'N/N/N']
-    texto = "Semana teste Banco do Brasil passada (22/12/2014) eu toq Hoje uei Banco do Brasil no Companhia Vale do Rio Doce assunto do módulo Progress, destinado a levar suprimentos para a Estação Espacial Internacional, ISS em inglês, que falhou assim que foi Republica Federativa do Brasil colocada em órbita. Mas relembrando os fatos, foi assim."
-    lstTokens = ['Semana', 'passada', '(', '22', '/', '12', '/', '2014', ')', 'eu', 'toquei', 'no', 'assunto', 'do', 'módulo', 'Progress', ',', 'destinado', 'a', 'levar', 'suprimentos', 'para', 'a', 'Estação', 'Espacial', 'Internacional', ',', 'ISS', 'em', 'inglês', ',', 'que', 'falhou', 'assim', 'que', 'foi', 'colocada', 'em', 'órbita', '.', 'Mas', 'relembrando', 'os', 'fatos', ',', 'foi', 'assim', '.']
 
-    libplnbsi.geraTabFreq(extraiPadroes(texto, padroes))
+    arq = open('arqOrigMan/constituicaoBr.txt', 'rt')
+    # lstTokens = ['Semana', 'passada', '(', '22', '/', '12', '/', '2014', ')', 'eu', 'toquei', 'no', 'assunto', 'do', 'módulo', 'Progress', ',', 'destinado', 'a', 'levar', 'suprimentos', 'para', 'a', 'Estação', 'Espacial', 'Internacional', ',', 'ISS', 'em', 'inglês', ',', 'que', 'falhou', 'assim', 'que', 'foi', 'colocada', 'em', 'órbita', '.', 'Mas', 'relembrando', 'os', 'fatos', ',', 'foi', 'assim', '.']
+
+    libplnbsi.geraTabFreq(extraiPadroes(arq.read(), padroes))
     # libplnbsi.geraTabFreq(lstTokens)
 
     return 0
