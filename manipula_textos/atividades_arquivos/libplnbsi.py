@@ -84,16 +84,18 @@ def tabFreq(pTexto, srtSep):
 #fim funcao
 
 #   geratabFreq(...) imprime a tabela de frequencia da lista passada por parâmetro
-def geraTabFreq(lstText):
+def geraTabFreq(lstPadroes):
     dic = {}
 
-    for elem in lstText:
+    for elem in lstPadroes:
         if elem in dic:
             dic[elem] += 1
         else:
             dic[elem] = 1
         #fim else
     #fim for
+
+    #todo desenvolver parte do remove stopWords
 
     dic = sorted(dic.items(), key=itemgetter(1), reverse=True)
 
@@ -123,7 +125,7 @@ def insereEspaco(pTexto):
 #   insereEspaco(...) retorna o texto passado como parâmetro acrescido de espaços antes e depois de seus separadores
 def verificaSeparadores(pTexto):
     arqSep = open('arqDestMan/separadores.txt', 'wt')
-    strSep = ' \n\t\n'
+    strSep = ''
 
     for el in pTexto:
         if not el.isalnum() and el not in strSep:
@@ -157,7 +159,7 @@ def atualizaSeparadores(pTexto):
 def tokenizador(pTexto):
     lstSep, lstTokens, lstPosicoes = [], [], []
     strBuffer, pos = '', 0
-
+    pTexto = insereEspaco(pTexto)
     lstSep = atualizaSeparadores(pTexto)
     # lstSep = [' ', '\t', '.', ',', '-', ':', ';', ')', '§', '(', '%', '°', '´']
     print(lstSep)
@@ -243,6 +245,9 @@ def extraiPadroes(pTexto, lstPadroes):
     strCodif = codifica(lstTokens)
     lstPadTexto = []
 
+    print(lstTokens)
+    print(strCodif)
+
     for pd in range(len(lstPadroes)):
         pos = strCodif.find(lstPadroes[pd])
         while(pos != -1):
@@ -257,5 +262,31 @@ def extraiPadroes(pTexto, lstPadroes):
             pos = strCodif.find(lstPadroes[pd])
         #fim while
     #fim for
+
     return lstPadTexto
+#fim funcao
+
+def stopWordUnico():
+    arqStopW = open('arqOrigMan/stopWordsPt.txt', 'rt')
+    strStopW = ''
+
+    stopW = arqStopW.readline()
+    while stopW != '':
+        if stopW not in strStopW:
+            strStopW += stopW + "\n"
+        #fim if
+        stopW = arqStopW.readline()
+    #fim while
+    arqStopW.close()
+
+    arqStopW = open('arqOrigMan/stopWordsPt.txt', 'wt')
+    arqStopW.write(strStopW)
+    arqStopW.close()
+#fim funcao
+
+#todo desenvolver funcao removeStopW(...)
+def removeStopW(pTexto, lstSep):
+    textReturn = ''
+
+    return textReturn
 #fim funcao

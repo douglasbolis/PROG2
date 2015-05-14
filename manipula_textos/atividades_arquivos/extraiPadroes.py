@@ -6,26 +6,26 @@ def main():
     padroes = ['MMpMM', 'MMpM', 'MpM', 'MMM', 'MM', 'M', 'N/N/N']
 
     # arqCont = open('arqOrigMan/codigocivilbr.txt', 'rt')
-    arqCont = open('arqOrigMan/codigoTransitoBr1997.txt', 'rt')
-    # arqCont = open('arqOrigMan/constituicaoBr.txt', 'rt')
+    # arqCont = open('arqOrigMan/codigoTransitoBr1997.txt', 'rt')
+    arqCont = open('arqOrigMan/constituicaoBr.txt', 'rt')
     # arqCont = open('arqOrigMan/bibliacatnt.txt', 'rt')
     # arqCont = open('arqOrigMan/bibliacatvt.txt', 'rt')
 
     texto = arqCont.read()
     # lstTokens = ['Semana', 'passada', '(', '22', '/', '12', '/', '2014', ')', 'eu', 'toquei', 'no', 'assunto', 'do', 'módulo', 'Progress', ',', 'destinado', 'a', 'levar', 'suprimentos', 'para', 'a', 'Estação', 'Espacial', 'Internacional', ',', 'ISS', 'em', 'inglês', ',', 'que', 'falhou', 'assim', 'que', 'foi', 'colocada', 'em', 'órbita', '.', 'Mas', 'relembrando', 'os', 'fatos', ',', 'foi', 'assim', '.']
 
-    texto = libplnbsi.insereEspaco(texto)
     #
     libplnbsi.geraTabFreq(libplnbsi.extraiPadroes(texto, padroes))
     # lstTeste, lstPos = libplnbsi.tokenizador(texto)
     # strCodifica = libplnbsi.codifica(lstTeste)
     #
+    # lstSep = libplnbsi.atualizaSeparadores(texto)
+    #
     # print(strCodifica)
     #
     # for el in strCodifica:
-    #     if el not in ['p' 'N', 'M', 'm', 'a', 'c', ' ', '.', ',', ';', '-', '─', ':', '\'', '!', '?', '(', ')', '[', ']', '{', '}', '\\', '|', '/', '\n', '\t', '\"', '§', '°', 'º', 'ª', '%']:
-    #         if el != 'p' and el != 'N':
-    #             print(el)
+    #     if el not in lstSep and el not in ['M', 'm', 'N', 'a', 'c', 'p']:
+    #         print(el)
         #fim if
     #fim for
 
