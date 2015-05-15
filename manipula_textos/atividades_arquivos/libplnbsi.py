@@ -84,7 +84,7 @@ def tabFreq(pTexto, srtSep):
 #fim funcao
 
 #   geratabFreq(...) imprime a tabela de frequencia da lista passada por parâmetro
-def geraTabFreq(lstPadroes):
+def geraTabFreq(lstPadroes, arqSaveFreq):
     dic = {}
 
     for elem in lstPadroes:
@@ -97,11 +97,19 @@ def geraTabFreq(lstPadroes):
 
     #todo desenvolver parte do remove stopWords
 
+    stopWordUnico()
+    dic = removeStopW(dic, carregaStopW())
+
     dic = sorted(dic.items(), key=itemgetter(1), reverse=True)
 
+    arqFreq = open(arqSaveFreq, 'wt')
+
     for elem in dic:
-        print("%50s %d" %(elem[0], elem[1]))
+        strFreq = str(elem[0]) + ',' + str(elem[1]) + '\n'
+        arqFreq.write(strFreq)
     #fim for
+
+    arqFreq.close()
 #fim funcao
 
 #   insereEspaco(...) retorna o texto passado como parâmetro acrescido de espaços antes e depois de seus separadores
@@ -254,7 +262,11 @@ def extraiPadroes(pTexto, lstPadroes):
             strPal = ''
             strCodif = strCodif.replace(lstPadroes[pd], "*" * len(lstPadroes[pd]), 1)
             for el in range(len(lstPadroes[pd])):
-                strPal += lstTokens[pos + el] + " "
+                if el == 0:
+                    strPal += lstTokens[pos + el]
+                else:
+                    strPal += " " + lstTokens[pos + el]
+                #fim else
             #fim for
             if (strPal):
                 lstPadTexto.append(strPal)
@@ -273,7 +285,7 @@ def stopWordUnico():
     stopW = arqStopW.readline()
     while stopW != '':
         if stopW not in strStopW:
-            strStopW += stopW + "\n"
+            strStopW += stopW
         #fim if
         stopW = arqStopW.readline()
     #fim while
@@ -284,9 +296,52 @@ def stopWordUnico():
     arqStopW.close()
 #fim funcao
 
-#todo desenvolver funcao removeStopW(...)
-def removeStopW(pTexto, lstSep):
-    textReturn = ''
+def carregaStopW():
+    arqStopW = open('arqOrigMan/stopWordsPt.txt', 'rt')
+    lstStopW = []
 
-    return textReturn
+    stopW = arqStopW.readline()
+    while stopW != '':
+        if stopW != '\n' and stopW[:-1] not in lstStopW:
+            lstStopW.append(stopW[:-1])
+        #fim if
+        stopW = arqStopW.readline()
+    #fim while
+    arqStopW.close()
+
+    return lstStopW
 #fim funcao
+
+#todo desenvolver funcao removeStopW(...)
+def removeStopW(dicPadroes, lstStopW):
+    dic = {}
+
+    for keyDic in dicPadroes.keys():
+        for swLst in lstStopW:
+            if keyDic.lower() != swLst.lower():
+                dic[keyDic] = dicPadroes[keyDic]
+            #fim if
+        #fim for
+    #fim for
+
+    return dic
+#fim funcao
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

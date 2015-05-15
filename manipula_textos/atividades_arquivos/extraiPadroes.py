@@ -5,17 +5,24 @@ import libplnbsi
 def main():
     padroes = ['MMpMM', 'MMpM', 'MpM', 'MMM', 'MM', 'M', 'N/N/N']
 
-    # arqCont = open('arqOrigMan/codigocivilbr.txt', 'rt')
-    # arqCont = open('arqOrigMan/codigoTransitoBr1997.txt', 'rt')
-    arqCont = open('arqOrigMan/constituicaoBr.txt', 'rt')
-    # arqCont = open('arqOrigMan/bibliacatnt.txt', 'rt')
-    # arqCont = open('arqOrigMan/bibliacatvt.txt', 'rt')
+    nomeArqLtr = 'arqOrigMan/codigocivilbr.txt'
+    nomeArqEsc = 'arqDestMan/tabFreqCodigocivilbr.csv'
+    # nomeArqLtr = 'arqOrigMan/codigoTransitoBr1997.txt'
+    # nomeArqEsc = 'arqDestMan/tabFreqCodigoTransitoBr1997.csv'
+    # nomeArqLtr = 'arqOrigMan/constituicaoBr.txt'
+    # nomeArqEsc = 'arqDestMan/tabFreqConstituicaoBr.csv'
+    # nomeArqLtr = 'arqOrigMan/bibliacatnt.txt'
+    # nomeArqEsc = 'arqDestMan/tabFreqBibliacatnt.csv'
+    # nomeArqLtr = 'arqOrigMan/bibliacatvt.txt'
+    # nomeArqEsc = 'arqDestMan/tabFreqBibliacatvt.csv'
+
+    arqCont = open(nomeArqLtr, 'rt')
 
     texto = arqCont.read()
     # lstTokens = ['Semana', 'passada', '(', '22', '/', '12', '/', '2014', ')', 'eu', 'toquei', 'no', 'assunto', 'do', 'módulo', 'Progress', ',', 'destinado', 'a', 'levar', 'suprimentos', 'para', 'a', 'Estação', 'Espacial', 'Internacional', ',', 'ISS', 'em', 'inglês', ',', 'que', 'falhou', 'assim', 'que', 'foi', 'colocada', 'em', 'órbita', '.', 'Mas', 'relembrando', 'os', 'fatos', ',', 'foi', 'assim', '.']
 
     #
-    libplnbsi.geraTabFreq(libplnbsi.extraiPadroes(texto, padroes))
+    libplnbsi.geraTabFreq(libplnbsi.extraiPadroes(texto, padroes), nomeArqEsc)
     # lstTeste, lstPos = libplnbsi.tokenizador(texto)
     # strCodifica = libplnbsi.codifica(lstTeste)
     #
