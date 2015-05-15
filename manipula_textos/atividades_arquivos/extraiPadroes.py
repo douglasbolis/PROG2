@@ -3,18 +3,18 @@ __author__ = "Douglas"
 import libplnbsi
 
 def main():
-    padroes = ['MMpMM', 'MMpM', 'MpM', 'MMM', 'MM', 'M', 'N/N/N']
+    padroes = ['MMpMM', 'MMpM', 'MpM', 'MMM', 'MM', 'M', 'N/N/N', 'MMMMM', 'MMMMMM']
 
-    nomeArqLtr = 'arqOrigMan/codigocivilbr.txt'
-    nomeArqEsc = 'arqDestMan/tabFreqCodigocivilbr.csv'
+    # nomeArqLtr = 'arqOrigMan/codigocivilbr.txt'
+    # nomeArqEsc = 'arqDestMan/freqCodigocivilbr.csv'
     # nomeArqLtr = 'arqOrigMan/codigoTransitoBr1997.txt'
-    # nomeArqEsc = 'arqDestMan/tabFreqCodigoTransitoBr1997.csv'
-    # nomeArqLtr = 'arqOrigMan/constituicaoBr.txt'
-    # nomeArqEsc = 'arqDestMan/tabFreqConstituicaoBr.csv'
+    # nomeArqEsc = 'arqDestMan/freqCodigoTransitoBr1997.csv'
+    nomeArqLtr = 'arqOrigMan/constituicaoBr.txt'
+    nomeArqEsc = 'arqDestMan/freqConstituicaoBr.csv'
     # nomeArqLtr = 'arqOrigMan/bibliacatnt.txt'
-    # nomeArqEsc = 'arqDestMan/tabFreqBibliacatnt.csv'
+    # nomeArqEsc = 'arqDestMan/freqBibliacatnt.csv'
     # nomeArqLtr = 'arqOrigMan/bibliacatvt.txt'
-    # nomeArqEsc = 'arqDestMan/tabFreqBibliacatvt.csv'
+    # nomeArqEsc = 'arqDestMan/freqBibliacatvt.csv'
 
     arqCont = open(nomeArqLtr, 'rt')
 

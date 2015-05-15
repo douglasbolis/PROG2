@@ -130,8 +130,14 @@ def insereEspaco(pTexto):
     return textReturn
 #fim funcao
 
-#   insereEspaco(...) retorna o texto passado como parâmetro acrescido de espaços antes e depois de seus separadores
+#   verificaSeparadores(...)
 def verificaSeparadores(pTexto):
+
+    # todo melhorar os separadores para somente acrescentar os separadores de novos textos
+    # arqSep = open('arqDestMan/separadores.txt', 'rt')
+    #
+    # arqSep.close()
+
     arqSep = open('arqDestMan/separadores.txt', 'wt')
     strSep = ''
 
@@ -317,11 +323,11 @@ def removeStopW(dicPadroes, lstStopW):
     dic = {}
 
     for keyDic in dicPadroes.keys():
-        for swLst in lstStopW:
-            if keyDic.lower() != swLst.lower():
-                dic[keyDic] = dicPadroes[keyDic]
-            #fim if
-        #fim for
+        if keyDic.lower() not in lstStopW:
+            dic[keyDic] = dicPadroes[keyDic]
+        else:
+            print(keyDic)
+        #fim if
     #fim for
 
     return dic

@@ -1,4 +1,5 @@
 as
+a
 o
 os
 um
@@ -7,6 +8,7 @@ umas
 uns
 à
 á
+é
 adeus
 agora
 aí
@@ -389,7 +391,6 @@ coisas
 delas
 disso
 disto
-e'
 enquanto
 fosse
 fossem
