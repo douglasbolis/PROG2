@@ -339,3 +339,42 @@ def removeStopW(dicPadroes, lstStopW): # ou algo que esteja num dic e queira tir
 
     return dic
 #fim funcao
+
+# funcao de leitura do arquivo que contem o(s) ultimo(s) 2mil(s) sorteio(s) da mega sena
+def leituraSena(arqOrig, arqDest, sep):
+    arqSena = open(arqOrig, 'rt')
+    lstSena = []
+
+    linha = arqSena.readline()
+    while linha != '':
+        linha = linha.strip().split(sep)
+        for i in range(len(linha)):
+            lstSena.append(linha[i])
+        #fim for
+        linha = arqSena.readline()
+    #fim while
+    arqSena.close()
+
+    geraTabFreq(lstSena, arqDest)
+# fim funcao
+
+
+def leituraFregSena(arqLtr, sep, lstIndc):
+    lstSena = []
+
+    arqSena = open(arqLtr, 'rt')
+
+    linha = arqSena.readline()
+    while linha != '':
+        lstFreqSena = []
+        linha = linha.strip().split(sep)
+        for i in range(len(lstIndc)):
+            lstFreqSena.append(linha[i])
+        #fim for
+        lstSena.append(tuple(lstFreqSena))
+        linha = arqSena.readline()
+    #fim while
+    arqSena.close()
+
+    return lstSena
+#fim funcao
