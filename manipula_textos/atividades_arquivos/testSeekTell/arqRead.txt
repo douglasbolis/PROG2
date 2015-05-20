@@ -1,0 +1,10 @@
+esta é a linha 1
+agora estamos na linha 2
+depois da linha anterior vem a linha 3
+finalmente estamos na linha 4
+como estamos só iniciando esta é a linha 5
+vamos dar o nome de linha linha 6 para esta linha
+e para terminar o inicio do arquivo vamos nomear esta linha como linha 7
+mas para fechar mesmo vamos chamar esta linha de linha 8
+como estamos terminando esta é a linha 9
+bom, para fecharmos com chave de ouro: vos apresento a linha 10

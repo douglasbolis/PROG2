@@ -98,7 +98,12 @@ def geraTabFreq(lstPadroes, arqSaveFreq):
     #todo desenvolver parte do remove stopWords
 
     stopWordUnico()
+    # chamando a função para remover os stopwords do dicionário
     dic = removeStopW(dic, carregaStopW())
+
+    # chamando a função para remover os separadores do dicionário
+    # que eventualmente passam pelo extraiPadrões
+    dic = removeStopW(dic, atualizaSeparadores(''))
 
     dic = sorted(dic.items(), key=itemgetter(1), reverse=True)
 
@@ -132,20 +137,26 @@ def insereEspaco(pTexto):
 
 #   verificaSeparadores(...)
 def verificaSeparadores(pTexto):
-
-    # todo melhorar os separadores para somente acrescentar os separadores de novos textos
-    # arqSep = open('arqDestMan/separadores.txt', 'rt')
-    #
-    # arqSep.close()
-
-    arqSep = open('arqDestMan/separadores.txt', 'wt')
     strSep = ''
 
-    for el in pTexto:
-        if not el.isalnum() and el not in strSep:
-            strSep += el + '\n'
+    arqSep = open('arqDestMan/separadores.txt', 'rt')
+    line = arqSep.readline()
+
+    while line != '':
+        strSep += line
+        line = arqSep.readline()
+    #fim for
+
+    arqSep.close()
+
+    arqSep = open('arqDestMan/separadores.txt', 'wt')
+
+    for elem in pTexto:
+        if not elem.isalnum() and elem not in strSep:
+            strSep += elem + '\n'
         #fim if
     #fim for
+
     arqSep.write(strSep)
     arqSep.close()
 #fim funcao
@@ -259,9 +270,6 @@ def extraiPadroes(pTexto, lstPadroes):
     strCodif = codifica(lstTokens)
     lstPadTexto = []
 
-    print(lstTokens)
-    print(strCodif)
-
     for pd in range(len(lstPadroes)):
         pos = strCodif.find(lstPadroes[pd])
         while(pos != -1):
@@ -286,19 +294,20 @@ def extraiPadroes(pTexto, lstPadroes):
 
 def stopWordUnico():
     arqStopW = open('arqOrigMan/stopWordsPt.txt', 'rt')
-    strStopW = ''
+    lstStopW = []
 
     stopW = arqStopW.readline()
     while stopW != '':
-        if stopW not in strStopW:
-            strStopW += stopW
-        #fim if
+        if stopW not in lstStopW:
+            lstStopW.append(stopW)
         stopW = arqStopW.readline()
     #fim while
     arqStopW.close()
 
     arqStopW = open('arqOrigMan/stopWordsPt.txt', 'wt')
-    arqStopW.write(strStopW)
+    for sw in lstStopW:
+        arqStopW.write(sw)
+    #fim for
     arqStopW.close()
 #fim funcao
 
@@ -319,35 +328,14 @@ def carregaStopW():
 #fim funcao
 
 #todo desenvolver funcao removeStopW(...)
-def removeStopW(dicPadroes, lstStopW):
+def removeStopW(dicPadroes, lstStopW): # ou algo que esteja num dic e queira tirar os que tem noutra lista
     dic = {}
 
     for keyDic in dicPadroes.keys():
         if keyDic.lower() not in lstStopW:
             dic[keyDic] = dicPadroes[keyDic]
-        else:
-            print(keyDic)
         #fim if
     #fim for
 
     return dic
 #fim funcao
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

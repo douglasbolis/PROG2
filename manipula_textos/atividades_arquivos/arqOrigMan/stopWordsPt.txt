@@ -9,6 +9,8 @@ uns
 à
 á
 é
+e
+no
 adeus
 agora
 aí
@@ -233,6 +235,7 @@ podem
 poder
 põe
 põem
+pois
 ponto
 pontos
 por
@@ -411,3 +414,7 @@ só
 tampouco
 ti
 todavia
+em
+do
+se
+mas
