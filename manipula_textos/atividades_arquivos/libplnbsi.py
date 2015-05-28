@@ -187,8 +187,6 @@ def tokenizador(pTexto):
     pTexto = insereEspaco(pTexto)
     lstSep = atualizaSeparadores(pTexto)
     # lstSep = [' ', '\t', '.', ',', '-', ':', ';', ')', '§', '(', '%', '°', '´']
-    print(lstSep)
-    print(len(lstSep))
 
     while pos < len(pTexto):
         if (pTexto[pos] not in lstSep):
