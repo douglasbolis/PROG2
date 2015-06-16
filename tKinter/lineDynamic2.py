@@ -16,10 +16,7 @@ class DrawLines(object):
             self.start_coords = coords
             return
         self.end_coords = coords
-        self.canvas.create_line(self.start_coords[0],
-                                self.start_coords[1],
-                                self.end_coords[0],
-                                self.end_coords[1])
+        self.canvas.create_line(self.start_coords[0], self.start_coords[1], self.end_coords[0], self.end_coords[1])
         self.start_coords = self.end_coords
 
 c.bind("<Button-1>", DrawLines(c))
