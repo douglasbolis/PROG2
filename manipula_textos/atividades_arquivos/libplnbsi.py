@@ -249,12 +249,10 @@ def codifica(pLst):
 # sortTamLst(...) ordena a lista passada por parâmetro em decrescente de tamanho
 def sortTamLst(lst):
     for i in range(len(lst)-1):
-        for i in range(len(lst)-1):
-            if (len(lst[i]) < len(lst[i+1])):
-                aux = lst[i]
-                lst[i] = lst[i+1]
-                lst[i+1] = aux
-            #fim if
+        if (len(lst[i]) < len(lst[i+1])):
+            aux = lst[i]
+            lst[i] = lst[i+1]
+            lst[i+1] = aux
         #fim for
     #fim for
     return lst

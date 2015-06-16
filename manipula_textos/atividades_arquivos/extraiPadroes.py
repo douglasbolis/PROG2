@@ -11,10 +11,10 @@ def main():
     # nomeArqEsc = 'arqDestMan/freqCodigoTransitoBr1997.csv'
     # nomeArqLtr = 'arqOrigMan/constituicaoBr.txt'
     # nomeArqEsc = 'arqDestMan/freqConstituicaoBr.csv'
-    nomeArqLtr = 'arqOrigMan/bibliacatnt.txt'
-    nomeArqEsc = 'arqDestMan/freqBibliacatnt.csv'
-    # nomeArqLtr = 'arqOrigMan/bibliacatvt.txt'
-    # nomeArqEsc = 'arqDestMan/freqBibliacatvt.csv'
+    # nomeArqLtr = 'arqOrigMan/bibliacatnt.txt'
+    # nomeArqEsc = 'arqDestMan/freqBibliacatnt.csv'
+    nomeArqLtr = 'arqOrigMan/bibliacatvt.txt'
+    nomeArqEsc = 'arqDestMan/freqBibliacatvt.csv'
 
     arqCont = open(nomeArqLtr, 'rt')
 
