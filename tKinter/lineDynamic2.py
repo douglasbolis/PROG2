@@ -2,7 +2,7 @@ __author__ = 'douglas'
 
 from tkinter import *
 w = Tk()
-c = Canvas(w)
+c = Canvas(w, width = 600, height = 600)
 c.pack()
 
 class DrawLines(object):
