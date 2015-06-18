@@ -27,15 +27,3 @@ def move(paramTADpto, dx, dy):
     coordenada y."""
     return (paramTADpto[0] + dx, paramTADpto[1] + dy)
 # fim função
-
-def intersec(paramTADretA, paramTADretB):
-    """Retorna um tad retângulo que é a intersecção dos dois retângulo de
-    entrada, ou None se os retângulo de entrada não se intercederem."""
-    """if ():
-
-    elif ():
-
-    else:"""
-
-    # fim else
-# fim função

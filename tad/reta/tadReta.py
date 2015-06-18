@@ -4,20 +4,23 @@ __author__ = 'douglas'
 def criar(x1,y1,x2,y2):
     """Retorna um tad reta a partir das coordenadas x,y de dois pontos no
     plano cartesiano."""
-    return
+    return (x1,y1,x2,y2)
 # fim função
 
 def criarP(paramTADptoA,paramTADptoB):
     """Retorna um tad reta a partir de dois tad pontos de entrada."""
+    return (paramTADptoA[0], paramTADptoA[1], paramTADptoB[0], paramTADptoB[1])
 # fim função
 
 def getPtos(paramTADreta):
     """Retorna uma lista com os dois tad pontos usados na criação da reta."""
+    return [(paramTADreta[0], paramTADreta[1]), (paramTADreta[2], paramTADreta[3])]
 # fim função
 
 def distancia(paramTADreta, paramTADpto):
     """Retorna um float com a distância euclidiana entre os tad ponto e tad
     reta de entrada."""
+    return
 # fim função
 
 def coef(paramTADretaA):
