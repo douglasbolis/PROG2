@@ -13,6 +13,7 @@ def main():
 
     canvas.create_rectangle(150, 50, 450, 100, fill = 'white', outline = 'red')
     canvas.create_rectangle(150, 150, 200, 300, fill = 'white', outline = 'red')
+    canvas.create_rectangle(550, 550, 750, 250, fill = 'blue', outline = 'blue')
 
     lstSeno = []
 
