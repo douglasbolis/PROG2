@@ -67,7 +67,7 @@ def movimenta(lst, px, w, h):
 def criaRet(canvas, lst, cor):
 
     if len(lst) > 0:
-        canvas.create_rectangle(lst[0], lst[1], lst[2], lst[3], fill = cor, width = 2, outline = cor)
+        canvas.create_rectangle(lst[0], lst[1], lst[2], lst[3], fill = cor, outline = cor)
     # fim if
 # fim funcao
 
@@ -105,8 +105,8 @@ def main():
         # movimenta(retG, 1, w, h)
 
         # canvas.update()
-        criaRet(canvas, retA, 'brown')
-        criaRet(canvas, retB, 'blue')
+        criaRet(canvas, retA, 'blue')
+        criaRet(canvas, retB, 'yellow')
         # criaRet(canvas, retC, 'orange')
         # criaRet(canvas, retD, 'green')
         # criaRet(canvas, retE, 'black')

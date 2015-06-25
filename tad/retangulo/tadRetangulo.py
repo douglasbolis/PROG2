@@ -48,6 +48,49 @@ def intersec(paramTADretA, paramTADretB):
 
     intRets = []
 
+    # se A está dentro de B
+    if (
+        supEsqDentro(paramTADretA, paramTADretB) and supDirDentro(paramTADretA, paramTADretB) and
+        infEsqDentro(paramTADretA, paramTADretB) and infDirDentro(paramTADretA, paramTADretB)
+    ):
+      return paramTADretA
+
+    # se B está dentro de A
+    elif (
+        supEsqDentro(paramTADretB, paramTADretA) and supDirDentro(paramTADretB, paramTADretA) and
+        infEsqDentro(paramTADretB, paramTADretA) and infDirDentro(paramTADretB, paramTADretA)
+    ):
+        return paramTADretB
+
+    # se superior esquerdo de A esta em B
+    elif (
+        supEsqDentro(paramTADretA, paramTADretB) and not supDirDentro(paramTADretA, paramTADretB) and
+        not infEsqDentro(paramTADretA, paramTADretB) and not infDirDentro(paramTADretA, paramTADretB)
+    ):
+        return [paramTADretA[0], paramTADretA[1], paramTADretB[2], paramTADretB[3]]
+
+    # se superior esquerdo de B esta em A
+    elif (
+        supEsqDentro(paramTADretB, paramTADretA) and not supDirDentro(paramTADretB, paramTADretA) and
+        not infEsqDentro(paramTADretB, paramTADretA) and not infDirDentro(paramTADretB, paramTADretA)
+    ):
+        return [paramTADretB[0], paramTADretB[1], paramTADretA[2], paramTADretA[3]]
+
+    # se superior direito de B esta em A
+    elif (
+        not supEsqDentro(paramTADretA, paramTADretB) and supDirDentro(paramTADretA, paramTADretB) and
+        not infEsqDentro(paramTADretA, paramTADretB) and not infDirDentro(paramTADretA, paramTADretB)
+    ):
+        return [paramTADretB[0], paramTADretB[3], paramTADretA[2], paramTADretA[1]]
+
+    # se superior direito de A esta em B
+    elif (
+        not supEsqDentro(paramTADretB, paramTADretA) and supDirDentro(paramTADretB, paramTADretA) and
+        not infEsqDentro(paramTADretB, paramTADretA) and not infDirDentro(paramTADretB, paramTADretA)
+    ):
+        return [paramTADretA[0], paramTADretA[3], paramTADretB[2], paramTADretB[1]]
+    # fim elif
+
     return intRets
 # fim funcao
 
