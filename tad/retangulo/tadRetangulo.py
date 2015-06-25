@@ -62,33 +62,93 @@ def intersec(paramTADretA, paramTADretB):
     ):
         return paramTADretB
 
-    # se superior esquerdo de A esta em B
+    # se superior direito de A esta em B / ou / inferior esquerdo de B esta em A
+    elif (
+        not supEsqDentro(paramTADretA, paramTADretB) and supDirDentro(paramTADretA, paramTADretB) and
+        not infEsqDentro(paramTADretA, paramTADretB) and not infDirDentro(paramTADretA, paramTADretB)
+    ):
+        return [paramTADretB[0], paramTADretA[1], paramTADretA[2], paramTADretB[3]]
+
+    # se superior direito de B esta em A / ou / inferior esquerdo de A esta em B
+    elif (
+        not supEsqDentro(paramTADretB, paramTADretA) and supDirDentro(paramTADretB, paramTADretA) and
+        not infEsqDentro(paramTADretB, paramTADretA) and not infDirDentro(paramTADretB, paramTADretA)
+    ):
+        return [paramTADretA[0], paramTADretB[1], paramTADretB[2], paramTADretA[3]]
+
+    # se superior esquerdo de A esta em B / ou / inferior direito de B esta em A
     elif (
         supEsqDentro(paramTADretA, paramTADretB) and not supDirDentro(paramTADretA, paramTADretB) and
         not infEsqDentro(paramTADretA, paramTADretB) and not infDirDentro(paramTADretA, paramTADretB)
     ):
         return [paramTADretA[0], paramTADretA[1], paramTADretB[2], paramTADretB[3]]
 
-    # se superior esquerdo de B esta em A
+    # se superior esquerdo de B esta em A / ou / inferior direito de A esta em B
     elif (
         supEsqDentro(paramTADretB, paramTADretA) and not supDirDentro(paramTADretB, paramTADretA) and
         not infEsqDentro(paramTADretB, paramTADretA) and not infDirDentro(paramTADretB, paramTADretA)
     ):
         return [paramTADretB[0], paramTADretB[1], paramTADretA[2], paramTADretA[3]]
 
-    # se superior direito de B esta em A
+    # se lado de baixo de A esta em B
     elif (
-        not supEsqDentro(paramTADretA, paramTADretB) and supDirDentro(paramTADretA, paramTADretB) and
+        not supEsqDentro(paramTADretA, paramTADretB) and not supDirDentro(paramTADretA, paramTADretB) and
+        infEsqDentro(paramTADretA, paramTADretB) and infDirDentro(paramTADretA, paramTADretB)
+    ):
+        return [paramTADretA[0], paramTADretB[1], paramTADretA[2], paramTADretA[3]]
+
+    # se lado de baixo de B esta em A
+    elif (
+        not supEsqDentro(paramTADretB, paramTADretA) and not supDirDentro(paramTADretB, paramTADretA) and
+        infEsqDentro(paramTADretB, paramTADretA) and infDirDentro(paramTADretB, paramTADretA)
+    ):
+        return [paramTADretB[0], paramTADretA[1], paramTADretB[2], paramTADretB[3]]
+
+    # se lado de cima de A esta em B
+    elif (
+        supEsqDentro(paramTADretA, paramTADretB) and supDirDentro(paramTADretA, paramTADretB) and
         not infEsqDentro(paramTADretA, paramTADretB) and not infDirDentro(paramTADretA, paramTADretB)
     ):
-        return [paramTADretB[0], paramTADretB[3], paramTADretA[2], paramTADretA[1]]
+        return [paramTADretA[0], paramTADretA[1], paramTADretA[2], paramTADretB[3]]
 
-    # se superior direito de A esta em B
+    # se lado de cima de B esta em A
     elif (
-        not supEsqDentro(paramTADretB, paramTADretA) and supDirDentro(paramTADretB, paramTADretA) and
+        supEsqDentro(paramTADretB, paramTADretA) and supDirDentro(paramTADretB, paramTADretA) and
         not infEsqDentro(paramTADretB, paramTADretA) and not infDirDentro(paramTADretB, paramTADretA)
     ):
-        return [paramTADretA[0], paramTADretA[3], paramTADretB[2], paramTADretB[1]]
+        return [paramTADretB[0], paramTADretB[1], paramTADretB[2], paramTADretA[3]]
+
+    # se lado direito de A esta em B
+    elif (
+        not supEsqDentro(paramTADretA, paramTADretB) and supDirDentro(paramTADretA, paramTADretB) and
+        not infEsqDentro(paramTADretA, paramTADretB) and infDirDentro(paramTADretA, paramTADretB)
+    ):
+        return [paramTADretB[0], paramTADretA[1], paramTADretA[2], paramTADretA[3]]
+
+    # se lado direito de B esta em A
+    elif (
+        not supEsqDentro(paramTADretB, paramTADretA) and supDirDentro(paramTADretB, paramTADretA) and
+        not infEsqDentro(paramTADretB, paramTADretA) and infDirDentro(paramTADretB, paramTADretA)
+    ):
+        return [paramTADretA[0], paramTADretB[1], paramTADretB[2], paramTADretB[3]]
+
+    # se lado esquerdo de A esta em B
+    elif (
+        supEsqDentro(paramTADretA, paramTADretB) and not supDirDentro(paramTADretA, paramTADretB) and
+        infEsqDentro(paramTADretA, paramTADretB) and not infDirDentro(paramTADretA, paramTADretB)
+    ):
+        return [paramTADretA[0], paramTADretA[1], paramTADretB[2], paramTADretA[3]]
+
+    # se lado esquerdo de B esta em A
+    elif (
+        supEsqDentro(paramTADretB, paramTADretA) and not supDirDentro(paramTADretB, paramTADretA) and
+        infEsqDentro(paramTADretB, paramTADretA) and not infDirDentro(paramTADretB, paramTADretA)
+    ):
+        return [paramTADretB[0], paramTADretB[1], paramTADretA[2], paramTADretB[3]]
+
+    # se os retângulos estão cruzados como sinal de soma
+    elif (especialDentro(paramTADretA, paramTADretB)):
+        return [paramTADretA[0], paramTADretB[1], paramTADretA[2], paramTADretB[3]]
     # fim elif
 
     return intRets
@@ -108,4 +168,12 @@ def infEsqDentro(retA, retB): # OK
 
 def infDirDentro(retA, retB): # OK
     return (retA[2] <= retB[2] and retA[3] <= retB[3]) and (retA[2] >= retB[0] and retA[3] >= retB[1])
+# fim funcao
+
+def especialDentro(retA, retB):
+    return (
+        (not supEsqDentro(retA, retB) and not supDirDentro(retA, retB) and not infDirDentro(retA, retB) and not infEsqDentro(retA, retB)) and
+        (retB[0] <= retA[0] and retB[1] >= retA[1]) and (retB[0] <= retA[0] and retB[3] <= retA[3]) and
+        (retB[2] >= retA[2] and retB[1] >= retA[1]) and (retB[2] >= retA[2] and retB[3] <= retA[3])
+    )
 # fim funcao

@@ -73,9 +73,9 @@ def criaRet(canvas, lst, cor):
 
 def main():
     raiz = Tk()
-    w, h = 500, 300
-    retA = [300, 50, 450, 200, 0, 0, 0, 0, 0, 0, 0, 0]
-    retB = [100, 50, 170, 120, 0, 0, 0, 0, 0, 0, 0, 0]
+    w, h = 800, 600
+    retA = [300, 50, 450, 400, 0, 0, 0, 0, 0, 0, 0, 0]
+    retB = [100, 50, 400, 120, 0, 0, 0, 0, 0, 0, 0, 0]
     # retC = [200, 500, 270, 570, 0, 0, 0, 0, 0, 0, 0, 0]
     # retD = [350, 200, 450, 550, 0, 0, 0, 0, 0, 0, 0, 0]
     # retE = [350, 400, 600, 500, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -105,15 +105,15 @@ def main():
         # movimenta(retG, 1, w, h)
 
         # canvas.update()
-        criaRet(canvas, retA, 'blue')
-        criaRet(canvas, retB, 'yellow')
+        criaRet(canvas, retA, 'pink')
+        criaRet(canvas, retB, 'orange')
         # criaRet(canvas, retC, 'orange')
         # criaRet(canvas, retD, 'green')
         # criaRet(canvas, retE, 'black')
         # criaRet(canvas, retF, 'yellow')
         # criaRet(canvas, retG, 'purple')
 
-        criaRet(canvas, tadRetangulo.intersec(retA[:4], retB[:4]), 'green')
+        criaRet(canvas, tadRetangulo.intersec(retA[:4], retB[:4]), 'blue')
     # fim while
 
     raiz.mainloop()
