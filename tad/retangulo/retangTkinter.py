@@ -66,7 +66,7 @@ def movimenta(lst, px, w, h):
 
 def criaRet(canvas, lst, cor):
     if len(lst) > 0:
-        canvas.create_rectangle(lst[0], lst[1], lst[2], lst[3], fill = cor, outline = cor)
+        canvas.create_rectangle(lst[:4] + [{'fill': cor, 'outline': cor}])
     # fim if
 # fim funcao
 
@@ -79,8 +79,10 @@ def adcAux(lst, aux):
 def main():
     raiz = Tk()
     w, h = 600, 450
-    retA = tadRetangulo.criarVtx(300, 50, 375, 150)
-    retB = tadRetangulo.criarVtx(100, 50, 250, 200)
+    retA = tadRetangulo.criarVtx(300, 100, 550, 200)
+    retB = tadRetangulo.criarVtx(100, 50, 250, 350)
+    # retA = tadRetangulo.criarVtx(300, 50, 375, 150)
+    # retB = tadRetangulo.criarVtx(100, 50, 250, 200)
     adcAux(retA, 0)
     adcAux(retB, 0)
 
@@ -95,7 +97,7 @@ def main():
 
     lst = [20, 40, 120, 140, {'fill': 'black', 'width': 6, 'outline': 'red'}]
 
-    canvas.create_rectangle(lst)
+    # canvas.create_rectangle(lst)
 
     while True:
         canvas.update()
@@ -108,8 +110,8 @@ def main():
         # criaRet(canvas, retG, 'white')
         time.sleep(0.01)
 
-        movimenta(retA, 1, w, h)
-        movimenta(retB, 2, w, h)
+        movimenta(retA, 2, w, h)
+        movimenta(retB, 1, w, h)
         # movimenta(retC, 1, w, h)
         # movimenta(retD, 2, w, h)
         # movimenta(retE, 1, w, h)
