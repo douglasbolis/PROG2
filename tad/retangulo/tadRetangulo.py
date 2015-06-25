@@ -4,20 +4,20 @@ def criarVtx(xsupesq,ysupesq,xinfd,yinf):
     '''cria via vértices.
     Retorna um tad retângulo a partir da origem (canto superior
     esquerdo) e da extremidade direita inferior.'''
-    return (xsupesq,ysupesq,xinfd,yinf)
+    return [xsupesq,ysupesq,xinfd,yinf]
 # fim funcao
 
 def criarDim(xsupesq,ysupesq,larg,alt):
     '''cria via origem e dimensões.
     Retorna um tad retângulo a partir da origem (canto superior
     esquerdo) e da largura e altura.'''
-    return (xsupesq,ysupesq,larg,alt)
+    return [xsupesq,ysupesq,larg,alt]
 # fim funcao
 
 def getCantos(paramTADret):
     '''Retorna uma lista de tad pontos com os cantos superior esquerdo e
     inferior direito, respectivamente.'''
-    return (paramTADret[0], paramTADret[1], paramTADret[2], paramTADret[3])
+    return [paramTADret[0], paramTADret[1], paramTADret[2], paramTADret[3]]
 # fim funcao
 
 def perimetro(paramTADret):
@@ -149,6 +149,10 @@ def intersec(paramTADretA, paramTADretB):
     # se os retângulos estão cruzados como sinal de soma
     elif (especialDentro(paramTADretA, paramTADretB)):
         return [paramTADretA[0], paramTADretB[1], paramTADretA[2], paramTADretB[3]]
+
+    # se os retângulos estão cruzados como sinal de soma
+    elif (especialDentro(paramTADretB, paramTADretA)):
+        return [paramTADretB[0], paramTADretA[1], paramTADretB[2], paramTADretA[3]]
     # fim elif
 
     return intRets

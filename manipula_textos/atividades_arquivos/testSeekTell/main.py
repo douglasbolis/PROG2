@@ -13,6 +13,7 @@ def main():
         lstPosline.append(pos)
         # repetindo para pegar os novos valores
         pos = arqRead.tell()
+        print(pos)
         linha = arqRead.readline()
     #fim while
 
@@ -25,7 +26,7 @@ def main():
         if (i%2 != 0):
             arqRead.seek(lstPosline[i])
             linha = arqRead.readline()
-            print(linha[:-1] + " - " + str((i+1)))
+            print(linha.strip() + " - " + str((lstPosline[i])))
         #fim if
     #fim
 

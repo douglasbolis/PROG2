@@ -10,7 +10,7 @@ def movimenta(lst, px, w, h):
     lst[6] = lst[2]
     lst[7] = lst[3]
 
-    if (lst[0] == 0):
+    if (lst[0] <= 0):
         if (lst[8] > lst[0]):
             lst[0] += px
             lst[2] += px
@@ -18,7 +18,7 @@ def movimenta(lst, px, w, h):
             lst[0] -= px
             lst[2] -= px
         # fim else
-    elif (lst[2] == w):
+    elif (lst[2] >= w):
         if (lst[10] > lst[2]):
             lst[0] += px
             lst[2] += px
@@ -34,7 +34,7 @@ def movimenta(lst, px, w, h):
         lst[2] += px
     # fim else
 
-    if (lst[1] == 0):
+    if (lst[1] <= 0):
         if (lst[9] > lst[1]):
             lst[1] += px
             lst[3] += px
@@ -42,7 +42,7 @@ def movimenta(lst, px, w, h):
             lst[1] -= px
             lst[3] -= px
         # fim else
-    elif (lst[3] == h):
+    elif (lst[3] >= h):
         if (lst[11] > lst[3]):
             lst[1] += px
             lst[3] += px
@@ -65,17 +65,25 @@ def movimenta(lst, px, w, h):
 # fim funcao
 
 def criaRet(canvas, lst, cor):
-
     if len(lst) > 0:
         canvas.create_rectangle(lst[0], lst[1], lst[2], lst[3], fill = cor, outline = cor)
     # fim if
 # fim funcao
 
+def adcAux(lst, aux):
+    for i in range(8):
+        lst.append(aux)
+    # fim for
+# fim funcao
+
 def main():
     raiz = Tk()
-    w, h = 800, 600
-    retA = [300, 50, 450, 400, 0, 0, 0, 0, 0, 0, 0, 0]
-    retB = [100, 50, 400, 120, 0, 0, 0, 0, 0, 0, 0, 0]
+    w, h = 600, 450
+    retA = tadRetangulo.criarVtx(300, 50, 375, 150)
+    retB = tadRetangulo.criarVtx(100, 50, 250, 200)
+    adcAux(retA, 0)
+    adcAux(retB, 0)
+
     # retC = [200, 500, 270, 570, 0, 0, 0, 0, 0, 0, 0, 0]
     # retD = [350, 200, 450, 550, 0, 0, 0, 0, 0, 0, 0, 0]
     # retE = [350, 400, 600, 500, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -84,6 +92,10 @@ def main():
 
     canvas = Canvas(raiz, width = w, height = h, cursor = 'X_cursor', bg = 'white')
     canvas.pack()
+
+    lst = [20, 40, 120, 140, {'fill': 'black', 'width': 6, 'outline': 'red'}]
+
+    canvas.create_rectangle(lst)
 
     while True:
         canvas.update()
@@ -113,7 +125,7 @@ def main():
         # criaRet(canvas, retF, 'yellow')
         # criaRet(canvas, retG, 'purple')
 
-        criaRet(canvas, tadRetangulo.intersec(retA[:4], retB[:4]), 'blue')
+        criaRet(canvas, tadRetangulo.intersec(retB[:4], retA[:4]), 'blue')
     # fim while
 
     raiz.mainloop()
