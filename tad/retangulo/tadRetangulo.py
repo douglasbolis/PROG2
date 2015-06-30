@@ -39,7 +39,10 @@ def igual(paramTADretA, paramTADretB):
 def move(paramTADretA, dx, dy):
     '''Desloca, no plano, o retângulo (sua origem) de dx na coordenada x e
     dy na coordenada y.'''
-    return (paramTADretA[0] + dx, paramTADretA[1] + dy, paramTADretA[2] + dx, paramTADretA[3] + dy)
+    paramTADretA[0] += dx
+    paramTADretA[1] += dy
+    paramTADretA[2] += dx
+    paramTADretA[3] += dy
 # fim funcao
 
 def intersec(paramTADretA, paramTADretB):

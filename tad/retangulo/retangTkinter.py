@@ -12,50 +12,62 @@ def movimenta(lst, px, w, h):
 
     if (lst[0] <= 0):
         if (lst[8] > lst[0]):
-            lst[0] += px
-            lst[2] += px
+            tadRetangulo.move(lst, px, 0)
+            # lst[0] += px
+            # lst[2] += px
         else:
-            lst[0] -= px
-            lst[2] -= px
+            tadRetangulo.move(lst, -1*px, 0)
+            # lst[0] -= px
+            # lst[2] -= px
         # fim else
     elif (lst[2] >= w):
         if (lst[10] > lst[2]):
-            lst[0] += px
-            lst[2] += px
+            tadRetangulo.move(lst, px, 0)
+            # lst[0] += px
+            # lst[2] += px
         else:
-            lst[0] -= px
-            lst[2] -= px
+            tadRetangulo.move(lst, -1*px, 0)
+            # lst[0] -= px
+            # lst[2] -= px
         # fim else
     elif (lst[8] > lst[0]):
-        lst[0] -= px
-        lst[2] -= px
+        tadRetangulo.move(lst, -1*px, 0)
+        # lst[0] -= px
+        # lst[2] -= px
     else:
-        lst[0] += px
-        lst[2] += px
+        tadRetangulo.move(lst, px, 0)
+        # lst[0] += px
+        # lst[2] += px
     # fim else
 
     if (lst[1] <= 0):
         if (lst[9] > lst[1]):
-            lst[1] += px
-            lst[3] += px
+            tadRetangulo.move(lst, 0, px)
+            # lst[1] += px
+            # lst[3] += px
         else:
-            lst[1] -= px
-            lst[3] -= px
+            tadRetangulo.move(lst, 0, -1*px)
+            # lst[1] -= px
+            # lst[3] -= px
         # fim else
     elif (lst[3] >= h):
         if (lst[11] > lst[3]):
-            lst[1] += px
-            lst[3] += px
+            tadRetangulo.move(lst, 0, px)
+            # lst[1] += px
+            # lst[3] += px
         else:
-            lst[1] -= px
-            lst[3] -= px
+            tadRetangulo.move(lst, 0, -1*px)
+            # lst[1] -= px
+            # lst[3] -= px
         # fim else
     elif (lst[9] > lst[1]):
-        lst[1] -= px
-        lst[3] -= px
+        tadRetangulo.move(lst, 0, -1*px)
+        # lst[1] -= px
+        # lst[3] -= px
     else:
-        lst[1] += px
-        lst[3] += px
+        tadRetangulo.move(lst, 0, px)
+        # lst[1] += px
+        # lst[3] += px
     # fim else
 
     lst[8] = lst[4]
