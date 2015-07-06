@@ -5,8 +5,8 @@ import math
 def criar(xcentro,ycentro,raio):
     '''Retorna um tad retângulo a partir da origem (canto superior
 esquerdo): e da extremidade direita inferior.'''
-    return [xcentro-raio, ycentro-raio, xcentro+raio, ycentro+raio]
 
+    return [xcentro-raio, ycentro-raio, xcentro+raio, ycentro+raio]
 # fim funcao
 
 def getCentro(paramTADcirc):
