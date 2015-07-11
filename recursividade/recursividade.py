@@ -1,29 +1,54 @@
 __author__ = 'douglas'
 
-# (EXTRA)_Calcular a fatorial de um número N
+'''     Atividades Extras     '''
+
+# (EXTRA_1)_Calcular a fatorial de um número N
 def fatorial(n):
-    def factInter(acc, x):
+    def factIter(acc, x):
         if x == 0:
             return acc
         else:
-            return factInter(acc*x, x-1)
+            return factIter(acc*x, x-1)
         # fim else
-    # fim factInter
+    # fim factIter
 
-    return factInter(1, n)
+    return factIter(1, n)
 # fim fatorial
+
+# (EXTRA_2)_Calcular a raiz quadrada de n
+def sqrt(n, stop):
+    def sqrtIter(aux, x):
+        if ehBomSuficiente(aux, x):
+            return aux
+        else:
+            return sqrtIter(melhoraResult(aux, x), x)
+            # fim else
+    # fim sqrtIter
+
+    def melhoraResult(param_aux, param_x):
+        return (param_aux + param_x / param_aux) / 2
+    # fim melhoraResult
+
+    def ehBomSuficiente(param_aux, param_x):
+        return abs((param_aux**2) - param_x) < stop
+    # fim ehBomSuficiente
+
+    return sqrtIter(1.0, n)
+# fim fatorial
+
+'''     Atividades da Lista     '''
 
 # (1)_Calcular a soma dos elementos de uma lista numérica.
 def somaElem(lst):
-    def somaInter(soma, xlst):
+    def somaIter(soma, xlst):
         if xlst == []:
             return soma
         else:
-            return somaInter(soma + xlst[0], xlst[1:])
+            return somaIter(soma + xlst[0], xlst[1:])
         # fim else
-    # fim somaInter
+    # fim somaIter
 
-    return somaInter(0, lst)
+    return somaIter(0, lst)
 # fim somaElem
 
 # (2)_permutações sobre um conjunto de n elementos
@@ -118,8 +143,11 @@ def removeSeparadores(str, strSep):
 # fim removeSeparadores
 
 def main():
-    # Extra
-    print(fatorial(100))
+    # Extra_1
+    # print(fatorial(100))
+
+    # Extra_2
+    print(sqrt(23, 0.0001))
 
     # Exercício_1
     # lst = [12, 23, 34, 45, 56, 67, 78, 89, 90]
