@@ -1,6 +1,5 @@
 __author__ = 'douglas'
 
-
 '''     Atividades Extras     '''
 
 # (EXTRA_1)_Calcular a fatorial de um número N
