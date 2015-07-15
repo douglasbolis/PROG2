@@ -39,6 +39,50 @@ def permutacao(lst):
     return permConj((), lst)
 # fim permutacao
 
+# (3)_Calcular o produto de 2 números, x e y. 
+def multiplicacao(x, y):
+    def calcMultiplicacao(param_a, param_b, prod, acc):
+        if param_b == acc:
+            return prod
+        else:
+            return calcMultiplicacao(param_a, param_b, prod+param_a, acc+1)
+        # fim else
+    # fim calcMultiplicacao
+
+    if x < 0 and y > 0:
+        if abs(x) > abs(y):
+            return -1 * calcMultiplicacao(abs(x), y, 0, 0)
+        else:
+            return -1 * calcMultiplicacao(y, abs(x), 0, 0)
+            # fim else
+    elif y < 0 and x > 0:
+        if abs(x) > abs(y):
+            return -1 * calcMultiplicacao(x, abs(y), 0, 0)
+        else:
+            return -1 * calcMultiplicacao(abs(y), y, 0, 0)
+            # fim else
+    else:
+        if x > y:
+            return calcMultiplicacao(abs(x), abs(y), 0, 0)
+        else:
+            return calcMultiplicacao(abs(y), abs(x), 0, 0)
+            # fim else
+    # fim else
+# fim multiplicacao
+
+# (4)_Calcular a divisão de 2 números, x e y. 
+def divisao(x, y):
+    def calcDivisao(param_x, param_y, acc):
+        if param_x < param_y:
+            return acc
+        else:
+            return calcDivisao(param_x - param_y, param_y, acc+1)
+        # fim else
+    # fim calcDivisao
+
+    return calcDivisao(x, y, 0)
+# fim divisao
+
 # (5)_Calcula a raiz quadrada de um número n com tolerância máxima t.
 def sqrt(n, t):
     def sqrtIter(aux, x):
@@ -59,6 +103,17 @@ def sqrt(n, t):
 
     return sqrtIter(1.0, n)
 # fim fatorial
+
+# (6)_Pesquisar a existência do elemento e na lista L.
+def existElem(n, lst):
+    if lst == []:
+        return False
+    elif n == lst[0]:
+        return True
+    else:
+        return existElem(n, lst[1:])
+    # fim else
+# fim existElem
 
 # (7)_Inverter uma string de entrada.
 def inverteStr(str):
@@ -160,6 +215,24 @@ def removeSeparadores(str, strSep):
     return rmSep('', str)
 # fim removeSeparadores
 
+# (12)_É possível construir uma função recursiva para converter um valor em base dez para binário ?
+# Tente construir esta função a partir do algoritmo clássico de conversão decimal binário.
+def decimalParaBinario(decimal):
+    def calcBinario(param_dec, param_bin):
+        if param_dec == 0:
+            if param_bin != '':
+                return param_bin
+            else:
+                return '0'
+            # fim else
+        else:
+            return calcBinario(divisao(param_dec, 2), str(param_dec%2) + param_bin)
+        # fim else
+    # calcBinario
+
+    return calcBinario(decimal, '')
+# fim decimalParaBinario
+
 def main():
     # Extra_1
     # print(fatorial(100))
@@ -168,8 +241,23 @@ def main():
     # lst = [12, 23, 34, 45, 56, 67, 78, 89, 90]
     # print(somaElem(lst))
 
+    # Exercício_3
+    # print(multiplicacao(21, 3))
+    # print(multiplicacao(0, 3))
+    # print(multiplicacao(21, 0))
+    # print(multiplicacao(21, -3))
+    # print(multiplicacao(-21, 3))
+    # print(multiplicacao(-21, -3))
+
+    # Exercício_4
+    # print(divisao(12, 3))
+
     # Exercício_5
     # print(sqrt(4, 0.0001))
+
+    # Exercício_6
+    # lst = [12, 23, 34, 45, 546, 67, 8]
+    # print(existElem(23, lst))
 
     # Exercício_7
     # str = 'socorram-me, subi no onibus em marrocos'
@@ -183,9 +271,9 @@ def main():
     # print(ehNatural(2.5, False))
 
     # Exercício_9
-    lst = [12, 23, 34, 45, 546, 67, 8]
-    lst2 = []
-    print(maiorElem(lst2))
+    # lst = [12, 23, 34, 45, 546, 67, 8]
+    # lst2 = []
+    # print(maiorElem(lst2))
 
     # Exercício_10
     # lst = [12, 23, 34, 45, 546, 67, 8]
@@ -196,6 +284,15 @@ def main():
     # str2 = 'oto come mocoto'
     # str3 = 'amanha é marrocos'
     # print(ehPalindromo(str3))
+
+    # Exercício_10
+    print(decimalParaBinario(0))
+    print(decimalParaBinario(1))
+    print(decimalParaBinario(3))
+    print(decimalParaBinario(7))
+    print(decimalParaBinario(11))
+    print(decimalParaBinario(18))
+    print(decimalParaBinario(85))
 # fim main
 
 main()
