@@ -30,13 +30,25 @@ def somaElem(lst):
     return somaIter(0, lst)
 # fim somaElem
 
-# (2)_permutações sobre um conjunto de n elementos
-def permutacao(lst):
-    def permConj(tupla, xlst):
-        return 0
-    # fim permConj
+# (2)_Função recursiva que retorne o conjunto de todas as permutações de um conjunto de entrada de 3 elementos.
+# Como generalizar a função para um conjunto de tamanho k elementos quaisquer ?
+# def permutacao(lst):
+#     def permConj(tupla, xlst):
+#         return 0
+#     # fim permConj
+#
+#     return permConj((), lst)
+def permutacao(lista):
+    if len(lista) == 1:
+        return [lista]
+    primeiro = lista[0]
+    resto = lista [1:]
+    resultado = []
 
-    return permConj((), lst)
+    for perm in permutacao(resto):
+        for i in range(len(perm)+1):
+            resultado += [perm[:i]+[primeiro]+perm[i:]]
+    return resultado
 # fim permutacao
 
 # (3)_Calcular o produto de 2 números, x e y. 
@@ -80,7 +92,17 @@ def divisao(x, y):
         # fim else
     # fim calcDivisao
 
-    return calcDivisao(x, y, 0)
+    if y == 0:
+        return None
+    elif x == 0:
+        return 0
+    elif x < 0 and y > 0:
+        return -1 * calcDivisao(abs(x), y, 0)
+    elif y < 0 and x > 0:
+        return -1 * calcDivisao(x, abs(y), 0)
+    else:
+        return calcDivisao(abs(x), abs(y), 0)
+    # fim else
 # fim divisao
 
 # (5)_Calcula a raiz quadrada de um número n com tolerância máxima t.
@@ -241,6 +263,10 @@ def main():
     # lst = [12, 23, 34, 45, 56, 67, 78, 89, 90]
     # print(somaElem(lst))
 
+    # Exercício_2
+    lst = ['a', 'b', 'c', 'd']
+    print(permutacao(lst))
+
     # Exercício_3
     # print(multiplicacao(21, 3))
     # print(multiplicacao(0, 3))
@@ -250,7 +276,13 @@ def main():
     # print(multiplicacao(-21, -3))
 
     # Exercício_4
+    # print(divisao(3, 12))
     # print(divisao(12, 3))
+    # print(divisao(-12, 3))
+    # print(divisao(12, -3))
+    # print(divisao(-12, -3))
+    # print(divisao(12, 0))
+    # print(divisao(0, 3))
 
     # Exercício_5
     # print(sqrt(4, 0.0001))
@@ -285,14 +317,14 @@ def main():
     # str3 = 'amanha é marrocos'
     # print(ehPalindromo(str3))
 
-    # Exercício_10
-    print(decimalParaBinario(0))
-    print(decimalParaBinario(1))
-    print(decimalParaBinario(3))
-    print(decimalParaBinario(7))
-    print(decimalParaBinario(11))
-    print(decimalParaBinario(18))
-    print(decimalParaBinario(85))
+    # Exercício_12
+    # print(decimalParaBinario(0))
+    # print(decimalParaBinario(1))
+    # print(decimalParaBinario(3))
+    # print(decimalParaBinario(7))
+    # print(decimalParaBinario(11))
+    # print(decimalParaBinario(18))
+    # print(decimalParaBinario(85))
 # fim main
 
 main()
