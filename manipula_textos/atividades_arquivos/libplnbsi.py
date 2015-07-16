@@ -84,7 +84,7 @@ def tabFreq(pTexto, srtSep):
 #fim funcao
 
 #   geratabFreq(...) imprime a tabela de frequencia da lista passada por parâmetro
-def geraTabFreq(lstPadroes):
+def geraTabFreq(lstPadroes, arqSaveFreq):
     dic = {}
 
     for elem in lstPadroes:
@@ -97,11 +97,24 @@ def geraTabFreq(lstPadroes):
 
     #todo desenvolver parte do remove stopWords
 
+    stopWordUnico()
+    # chamando a função para remover os stopwords do dicionário
+    dic = removeStopW(dic, carregaStopW())
+
+    # chamando a função para remover os separadores do dicionário
+    # que eventualmente passam pelo extraiPadrões
+    dic = removeStopW(dic, atualizaSeparadores(''))
+
     dic = sorted(dic.items(), key=itemgetter(1), reverse=True)
 
+    arqFreq = open(arqSaveFreq, 'wt')
+
     for elem in dic:
-        print("%50s %d" %(elem[0], elem[1]))
+        strFreq = str(elem[0]) + ',' + str(elem[1]) + '\n'
+        arqFreq.write(strFreq)
     #fim for
+
+    arqFreq.close()
 #fim funcao
 
 #   insereEspaco(...) retorna o texto passado como parâmetro acrescido de espaços antes e depois de seus separadores
@@ -122,16 +135,28 @@ def insereEspaco(pTexto):
     return textReturn
 #fim funcao
 
-#   insereEspaco(...) retorna o texto passado como parâmetro acrescido de espaços antes e depois de seus separadores
+#   verificaSeparadores(...)
 def verificaSeparadores(pTexto):
-    arqSep = open('arqDestMan/separadores.txt', 'wt')
     strSep = ''
 
-    for el in pTexto:
-        if not el.isalnum() and el not in strSep:
-            strSep += el + '\n'
+    arqSep = open('arqDestMan/separadores.txt', 'rt')
+    line = arqSep.readline()
+
+    while line != '':
+        strSep += line
+        line = arqSep.readline()
+    #fim for
+
+    arqSep.close()
+
+    arqSep = open('arqDestMan/separadores.txt', 'wt')
+
+    for elem in pTexto:
+        if not elem.isalnum() and elem not in strSep:
+            strSep += elem + '\n'
         #fim if
     #fim for
+
     arqSep.write(strSep)
     arqSep.close()
 #fim funcao
@@ -162,8 +187,6 @@ def tokenizador(pTexto):
     pTexto = insereEspaco(pTexto)
     lstSep = atualizaSeparadores(pTexto)
     # lstSep = [' ', '\t', '.', ',', '-', ':', ';', ')', '§', '(', '%', '°', '´']
-    print(lstSep)
-    print(len(lstSep))
 
     while pos < len(pTexto):
         if (pTexto[pos] not in lstSep):
@@ -226,12 +249,10 @@ def codifica(pLst):
 # sortTamLst(...) ordena a lista passada por parâmetro em decrescente de tamanho
 def sortTamLst(lst):
     for i in range(len(lst)-1):
-        for i in range(len(lst)-1):
-            if (len(lst[i]) < len(lst[i+1])):
-                aux = lst[i]
-                lst[i] = lst[i+1]
-                lst[i+1] = aux
-            #fim if
+        if (len(lst[i]) < len(lst[i+1])):
+            aux = lst[i]
+            lst[i] = lst[i+1]
+            lst[i+1] = aux
         #fim for
     #fim for
     return lst
@@ -245,16 +266,17 @@ def extraiPadroes(pTexto, lstPadroes):
     strCodif = codifica(lstTokens)
     lstPadTexto = []
 
-    print(lstTokens)
-    print(strCodif)
-
     for pd in range(len(lstPadroes)):
         pos = strCodif.find(lstPadroes[pd])
         while(pos != -1):
             strPal = ''
             strCodif = strCodif.replace(lstPadroes[pd], "*" * len(lstPadroes[pd]), 1)
             for el in range(len(lstPadroes[pd])):
-                strPal += lstTokens[pos + el] + " "
+                if el == 0:
+                    strPal += lstTokens[pos + el]
+                else:
+                    strPal += " " + lstTokens[pos + el]
+                #fim else
             #fim for
             if (strPal):
                 lstPadTexto.append(strPal)
@@ -268,25 +290,87 @@ def extraiPadroes(pTexto, lstPadroes):
 
 def stopWordUnico():
     arqStopW = open('arqOrigMan/stopWordsPt.txt', 'rt')
-    strStopW = ''
+    lstStopW = []
 
     stopW = arqStopW.readline()
     while stopW != '':
-        if stopW not in strStopW:
-            strStopW += stopW + "\n"
-        #fim if
+        if stopW not in lstStopW:
+            lstStopW.append(stopW)
         stopW = arqStopW.readline()
     #fim while
     arqStopW.close()
 
     arqStopW = open('arqOrigMan/stopWordsPt.txt', 'wt')
-    arqStopW.write(strStopW)
+    for sw in lstStopW:
+        arqStopW.write(sw)
+    #fim for
     arqStopW.close()
 #fim funcao
 
-#todo desenvolver funcao removeStopW(...)
-def removeStopW(pTexto, lstSep):
-    textReturn = ''
+def carregaStopW():
+    arqStopW = open('arqOrigMan/stopWordsPt.txt', 'rt')
+    lstStopW = []
 
-    return textReturn
+    stopW = arqStopW.readline()
+    while stopW != '':
+        if stopW != '\n' and stopW[:-1] not in lstStopW:
+            lstStopW.append(stopW[:-1])
+        #fim if
+        stopW = arqStopW.readline()
+    #fim while
+    arqStopW.close()
+
+    return lstStopW
+#fim funcao
+
+#todo desenvolver funcao removeStopW(...)
+def removeStopW(dicPadroes, lstStopW): # ou algo que esteja num dic e queira tirar os que tem noutra lista
+    dic = {}
+
+    for keyDic in dicPadroes.keys():
+        if keyDic.lower() not in lstStopW:
+            dic[keyDic] = dicPadroes[keyDic]
+        #fim if
+    #fim for
+
+    return dic
+#fim funcao
+
+# funcao de leitura do arquivo que contem o(s) ultimo(s) 2mil(s) sorteio(s) da mega sena
+def leituraSena(arqOrig, arqDest, sep):
+    arqSena = open(arqOrig, 'rt')
+    lstSena = []
+
+    linha = arqSena.readline()
+    while linha != '':
+        linha = linha.strip().split(sep)
+        for i in range(len(linha)):
+            lstSena.append(linha[i])
+        #fim for
+        linha = arqSena.readline()
+    #fim while
+    arqSena.close()
+
+    geraTabFreq(lstSena, arqDest)
+# fim funcao
+
+
+def leituraFregSena(arqLtr, sep, lstIndc):
+    lstSena = []
+
+    arqSena = open(arqLtr, 'rt')
+
+    linha = arqSena.readline()
+    while linha != '':
+        lstFreqSena = []
+        linha = linha.strip().split(sep)
+        for i in range(len(lstIndc)):
+            lstFreqSena.append(linha[i])
+        #fim for
+        lstSena.append(tuple(lstFreqSena))
+        linha = arqSena.readline()
+    #fim while
+    arqSena.close()
+
+    return lstSena
 #fim funcao
