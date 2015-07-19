@@ -65,12 +65,13 @@ def carregaIndices(paramNomeArqDados):
 # fim funcao
 
 def main():
-	dic = {}
-	
-	indexabd('bd-mat-complex')
-	dic = carregaIndices('bd-mat-complex')
-	print(dic['A'])
-	
+	# dic = {}
+	#
+	# indexabd('bd-mat-complex')
+	# dic = carregaIndices('bd-mat-complex')
+	# print(dic['A'])
+
+	print(tadcomplex.criaStr('-4.5-5.25i'))
 # fim main
 
 main()
