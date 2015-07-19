@@ -264,7 +264,7 @@ def main():
     # print(somaElem(lst))
 
     # Exercício_2
-    lst = ['a', 'b', 'c', 'd']
+    lst = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
     print(permutacao(lst))
 
     # Exercício_3
