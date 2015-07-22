@@ -1,4 +1,6 @@
-def insercaoSort(param_lst):
+__author__ = 'douglas'
+
+def fazInsercao(param_lst):
 	lst_result, trocas = [], 0
 	
 	if len(param_lst) > 0:
@@ -35,24 +37,24 @@ def insercaoSort(param_lst):
 	return lst_result
 # fim insercaoSort
 
-def fazInsercao(lst):
-	for j in range(len(lst)):
-		x = lst[j]
+def insertionSort(paramLst):
+	trocas = 0
+
+	for j in range(len(paramLst)):
+		valorCorrente = paramLst[j]
 		i = j-1
 
-		while i >= 0 and lst[i] > x:
-			lst[i+1] = lst[i]
-			i = i-1
+		while i >= 0 and paramLst[i] > valorCorrente:
+			paramLst[i+1] = paramLst[i]
+			i -= 1
 		# fim while
-		lst[i+1] = x
+
+		if paramLst[i+1] != valorCorrente:
+			trocas += 1
+		# fim if
+
+		paramLst[i+1] = valorCorrente
 	# fim for
 
-	return lst
+	return paramLst, trocas
 # fim fazInsercao
-
-def main():
-	# print(insercaoSort([67, 34, 12, 200, 54, 2, 5, 13, 100]))
-	print(fazInsercao([67, 34, 12, 200, 54, 2, 5, 13, 100]))
-# fim main
-
-main()

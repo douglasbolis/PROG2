@@ -1,3 +1,5 @@
+__author__ = 'douglas'
+
 def insercaoSort(param_lst):
 	lst_result, trocas = [], 0
 	
@@ -34,9 +36,3 @@ def insercaoSort(param_lst):
 	print(trocas)
 	return lst_result
 # fim insercaoSort
-
-def main():
-	print(insercaoSort([67, 34, 12, 200, 54, 2, 5, 13, 100]))
-# fim main
-
-main()

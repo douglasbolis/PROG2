@@ -1,20 +1,16 @@
-def fazInsercao(lst):
-	for j in range(len(lst)):
-		x = lst[j]
-		i = j-1
+__author__ = 'douglas'
 
-		while i >= 0 and lst[i] > x:
-			lst[i+1] = lst[i]
-			i = i-1
-		# fim while
-		lst[i+1] = x
+def bubbleSort(lst):
+	trocas = 0
+
+	for i in range(len(lst)):
+		for j in range(len(lst)-1):
+			if lst[j] > lst[j+1]:
+				lst[j], lst[j+1] = lst[j+1], lst[j]
+				trocas += 1
+			# fim if
+		# fim for
 	# fim for
 
-	return lst
-# fim fazInsercao
-
-def main():
-	print(fazInsercao([67, 34, 12, 200, 54, 2, 5, 13, 100]))
-# fim main
-
-main()
+	return lst, trocas
+# fim bubbleSort
