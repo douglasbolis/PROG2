@@ -22,23 +22,31 @@ def geraLista(tamLst):
 # fim geraLista
 
 def main():
-	"""
-	Tamanhos das listas para o teste de desempenho:
-		100, 400, 900, 1600, 2500, 3600, 4900, 6400, 8100, 10000, 12100, 14400, 16900, 19600, 22500, 25600,
-		28900, 32400, 36100, 40000, 44100, 48400, 52900, 57600, 62500, 67600, 72900, 78400, 84100, 90000
-	"""
-	# lst = geraLista(10000)
-	lst = [8, 5, 2, 6, 9, 3, 1, 4, 0, 7]
-	lstBubble = lst[:]
-	lstInsertion = lst[:]
-	lstSelection = lst[:]
 
-	print(lst)
+	lstTam = [
+		20, 80, 180, 320, 500, 720, 980, 1280, 1620, 2000, 2420, 2880, 3380, 3920, 4500, 5120,
+		5780, 6480, 7220, 8000, 8820, 9680, 10580, 11520, 12500, 13520, 14580, 15680, 16820, 18000
+	]
 
-	print("Bubble sort: %d troca(s)" %(insercao_bolha.bubbleSort(lstBubble)[1]))
-	print("Selection sort: %d troca(s)" %(insercao_selecao.selectionSort(lstSelection)[1]))
-	print("Insertion sort: %d troca(s)" %(insercao_direta.insertionSort(lstInsertion)[1]))
+	arqTabela = open('tabela_sort.csv', 'wt')
+	arqTabela.write('Length of List|Bubble|Selection|Insertion\n')
 
+	for i in lstTam:
+		novaLst = geraLista(i)
+
+		lstBubble = novaLst[:]
+		lstInsertion = novaLst[:]
+		lstSelection = novaLst[:]
+
+		arqTabela.write(
+			str(i) + '|' + \
+			str(insercao_bolha.bubbleSort(lstBubble)[1]) + '|' + \
+			str(insercao_selecao.selectionSort(lstSelection)[1]) + '|' + \
+			str(insercao_direta.insertionSort(lstInsertion)[1]) + '\n'
+		)
+	# fim for
+
+	arqTabela.close()
 
 	# if ((lst[linha][cidade] > lst[linha+1][cidade]) or
 	#    ((lst[linha][cidade] == lst[linha+1][cidade]) and (lst[linha][bairro] > lst[linha+1][bairro])) or
