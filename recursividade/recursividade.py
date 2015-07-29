@@ -38,9 +38,13 @@ def somaElem(lst):
 #     # fim permConj
 #
 #     return permConj((), lst)
+
+
 def permutacao(lista):
     if len(lista) == 1:
         return [lista]
+	# fim if
+
     primeiro = lista[0]
     resto = lista [1:]
     resultado = []
@@ -48,8 +52,12 @@ def permutacao(lista):
     for perm in permutacao(resto):
         for i in range(len(perm)+1):
             resultado += [perm[:i]+[primeiro]+perm[i:]]
+		# fim for
+	# fim for
+
     return resultado
 # fim permutacao
+
 
 # (3)_Calcular o produto de 2 números, x e y. 
 def multiplicacao(x, y):
@@ -264,7 +272,7 @@ def main():
     # print(somaElem(lst))
 
     # Exercício_2
-    lst = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+    lst = ['a', 'b', 'c']
     print(permutacao(lst))
 
     # Exercício_3
