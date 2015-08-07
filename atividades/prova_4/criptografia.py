@@ -1,7 +1,11 @@
 __author__ = 'Douglas'
 
-_caracteresCifra = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ,.;:'
-
+'''
+A função cifraCesar(<mensagem>,<ndesloc>) retorna criptografada a mensagem passada como
+parâmetro de entrada com deslocamento passado como segundo parâmetro.
+Ex.: 'Aula de matemática: Capítulo nove'
+Ret.: 'DXOD*GH*PDWHPÄWLFD=*FDSÐWXOR*QRYH'
+'''
 def cifraCesar(mensagem, ndesloc):
 	textoCifra = ''
 	mensagem = mensagem.upper()
@@ -9,19 +13,20 @@ def cifraCesar(mensagem, ndesloc):
 	for ch in mensagem:
 		if ch == ' ':
 			textoCifra += '*'
-		elif ch in _caracteresCifra:
-			idx = _caracteresCifra.find(ch) + ndesloc
-
-			if idx >= 30:
-				idx -= 30
-			# fim if
-			textoCifra += _caracteresCifra[idx]
+		else:
+			textoCifra += chr(ord(ch) + ndesloc)
 		# fim if
 	# fim for
 
 	return textoCifra
 # fim cifraCesar
 
+'''
+A função decifraCesar(<mensagem>,<ndesloc>) retorna descriptografada  a mensagem passada como
+parâmetro de entrada com deslocamento passado como segundo parâmetro.
+Ex.: 'DXOD*GH*PDWHPÄWLFD=*FDSÐWXOR*QRYH'
+Ret.: 'Aula de matemática: Capítulo nove'
+'''
 def decifraCesar(textoCifrado,  ndesloc):
 	textoDecifra = ''
 	textoCifrado = textoCifrado.upper()
@@ -29,26 +34,47 @@ def decifraCesar(textoCifrado,  ndesloc):
 	for ch in textoCifrado:
 		if ch == '*':
 			textoDecifra += ' '
-		elif ch in _caracteresCifra:
-			idx = _caracteresCifra.find(ch) - ndesloc
-			textoDecifra += _caracteresCifra[idx]
+		else:
+			textoDecifra += chr(ord(ch) - ndesloc)
 		# fim if
 	# fim for
 
 	return textoDecifra.lower()
 # fim decifraCesar
 
+def cifraEspartana(mensagem):
+
+	return mensagem
+# fim cifraEspartana
+
+def decifraEspartana(mensagem):
+
+	return mensagem
+# fim decifraEspartana
+
+def criptografa(mensagem):
+	desloc = 13
+
+	return cifraEspartana(cifraCesar(mensagem, desloc))
+# fim criptografa
+
+def descriptografa(mensagem):
+	desloc = 13
+
+	return decifraEspartana(decifraCesar(mensagem, desloc))
+# fim descriptorgafa
+
 def main():
-	texto = 'Aula de matematica: Dia nove'
-	desloc = 3
+	arqRead = open('cripto.txt', 'rt')
 
-	textoCifrado = cifraCesar(texto, desloc)
+	linha = arqRead.readline()
 
-	print(textoCifrado)
+	while linha != '':
+		print(descriptografa(criptografa(descriptografa(linha.strip()))))
+		linha = arqRead.readline()
+	# fim while
 
-	textoDecifrado = decifraCesar(textoCifrado, desloc)
-
-	print(textoDecifrado)
+	arqRead.close()
 # fim main
 
 main()
