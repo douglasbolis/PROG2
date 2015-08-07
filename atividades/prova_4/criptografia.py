@@ -61,7 +61,7 @@ def criptografa(mensagem):
 def descriptografa(mensagem):
 	desloc = 13
 
-	return decifraEspartana(decifraCesar(mensagem, desloc))
+	return decifraCesar(decifraEspartana(mensagem), desloc)
 # fim descriptorgafa
 
 def main():
