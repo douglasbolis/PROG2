@@ -1,0 +1,26 @@
+EXERCICIOS DE ARQUIVOS (INTRODUÇÃO A ARQUIVOS)
+
+Obs: 
+  a) sempre construir as funções, e depois construir as aplicações.
+  b) todas as aplicações devem trabalhar com a interface de linha de comando.
+
+1. Construir um programa python que faça a cópia entre dois arquivos.
+
+2. Construir um progrma python que faça a concatenação de uma quantidade n de arquivos. O resultante concatenado deve ser salvo em um novo arquivo.
+
+3. Construir um programa python para remover os acentos de um arquivo texto de entrada. O novo conteúdo sem acentos deve gerar um novo arquivo.
+
+4. Construir um programa python que seleciona todos os separadores de um texto de entrada. Um separador é qualquer caracter que não seja letra (minúscula, maiúscula e acentuados, cedilha e dígitos). Os separadores devem ser salvos em um arquivo chamado separadores.txt.
+
+5. Construir uma base de dados de stopwords para o português do Brasil. Pesquise na internet e consolide várias listas de stopwords em apenas um arquivo texto chamado stopwordspt.txt. Remova do arquivo todas as palavras repetidas e todos os verbos que não forem os de ligação tradicionais: ser, estar, permanecer, continuar, ter, haver.
+
+6. Construir a função removeStopW(<texto>,<lista de stopwords>). A função devolve um texto sem stopwords.
+
+7. Construa a tabela de frequencias de palavras das bíblias católica e protestante, novo e velho testamento. Salve as tabelas em arquivos separados. Em seguida, use a planilha eletrônica para criar um gráfico de pizza de cada tabela. Compare os dois gráficos. (obs: não incluir stopwords na tabela de frequencia. Incluir entidades nomeadas).
+
+8. Faça uma pesquisa na internet sobre pronomes de tratamento. Usando o tokenizador e codificador, gere uma nova lista de tokens dessavez reunindo os pronomes de tratamento em um único token. Em seguida altere a função codificar para incluir o código T para pronomes de tratamento gerando um novo nível de codificação para a nova lista de tokens.
+
+9. Analise novamente o problema da segmentação do texto em sentenças. Sabendo que uma sentença finaliza com um caractere de ponto, '.', reescreva o programa de separação de sentenças usando os produtos do exercício 7. Veja como a nova lista de tokens e a nova codificação auxiliam a diferenciar os pontos que são finalizadores de sentença daqueles que não são.
+ 
+
+
